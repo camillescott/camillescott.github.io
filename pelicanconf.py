@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 AUTHOR = u'Camille Scott'
 SITENAME = u'At the Mountains of Madness'
 SITESUBTITLE =u'a blog on the perils and wonders of bioinformatics'
-SITEURL = 'http://miskatonic.ged.msu.edu'
+SITEURL = 'http://camillescott.github.io/blog'
 
 OUTPUT_PATH = u'blog/'
 
@@ -20,7 +20,7 @@ TRANSLATION_FEED_ATOM = None
 
 
 # Theme related stuff
-THEME = 'pelican-elegant'
+THEME = 'elegant'
 #PLUGINS = ['sitemap', 'extract_toc', 'tipue_search']
 MD_EXTENSIONS = ['codehilite(css_class=highlight)', 'extra', 'headerid', 'toc']
 DIRECT_TEMPLATES = (('index', 'tags', 'categories','archives', 'search', '404'))
