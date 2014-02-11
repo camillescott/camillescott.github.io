@@ -1,7 +1,7 @@
 Profiling C++ Extensions with Yep
 ####################################
 :date: 2013-12-06
-:author: C Scott
+:author: Camille Scott
 :slug: profiling-with-yep
 :summary: yep to profile c++ extensions to python, installation and usage
 :category: python
@@ -11,7 +11,7 @@ For those of you who work with both the python codebase and the ``c++`` backend,
 Seeing as we work with performance-sensitive software, profiling is very useful; but, it can be a pain
 to profile our ``c++`` code when called through python, which necessitates writing ``c++`` wrappers 
 to functions for basic profiling. The solution I found is called 
-`yep <(http://fa.bianp.net/blog/2011/a-profiler-for-python-extensions>`__, 
+`yep <http://fa.bianp.net/blog/2011/a-profiler-for-python-extensions>`__, 
 which is a python module made specifically to profile ``c++`` python extensions. In order to install, simply run::
 
     sudo apt-get install google-perftools
@@ -63,7 +63,7 @@ Here is some example output:
   :align: center  
   
   In this call graph, the python debugging symbols were not properly included; this is resolved by using the
-  debuggging executable.
+  debugging executable.
 
 
 The call graph is in standard form, where the first percentange is the time in that particular

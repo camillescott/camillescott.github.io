@@ -1,59 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-				<title>At the Mountains of Madness &mdash; Profiling C++ Extensions with Yep</title>
-		<meta charset="utf-8" />
-		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link rel="stylesheet" type="text/css" href="http://miskatonic.ged.msu.edu/theme/css/style.css" />
-		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
-		<style type="text/css">
-			body.custom-background { background-color: #f5f5f5; }
-		</style>
-		<link rel="alternate" type="application/atom+xml"
-			title="At the Mountains of Madness — Flux Atom"
-			href="http://miskatonic.ged.msu.edu/" /> 
-				<!--[if lte IE 8]><script src="http://miskatonic.ged.msu.edu/theme/js/html5shiv.js"></script><![endif]-->
-				</head>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <meta name="author" content="Camille Scott" />
+        <meta name="copyright" content="Camille Scott" />
+                
+                <meta name="keywords" content="python, c++, programming, profiling, python, " />
+        <title>Profiling C++ Extensions with Yep  · At the Mountains of Madness
+</title>
+                <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://miskatonic.ged.msu.edu/theme/css/elegant.css" media="screen">
+                                                            </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://miskatonic.ged.msu.edu/"><span class=site-name>At the Mountains of Madness</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://miskatonic.ged.msu.edu">Home</a></li>
+                                                                                                                <li ><a href="http://miskatonic.ged.msu.edu/categories.html">Categories</a></li>
+                            <li ><a href="http://miskatonic.ged.msu.edu/tags.html">Tags</a></li>
+                            <li ><a href="http://miskatonic.ged.msu.edu/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://miskatonic.ged.msu.edu/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+                    <article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://miskatonic.ged.msu.edu/profiling-with-yep.html"> Profiling C++ Extensions with Yep  </a></h1>
+    </header>
+</div>
 
-<body class="home blog custom-background " >
-	<div id="container">
-		<div id="header">
-				<h1 id="site-title"><a href="http://miskatonic.ged.msu.edu">At the Mountains of Madness</a></h1>
-				<h2 id="site-description">a blog on the perils and wonders of bioinformatics</h2>		</div><!-- /#banner -->
-		
-		<div id="menu">
-			<div class="menu-navigation-container">
-				<ul id="menu-navigation" class="menu">
-										  										  						<li class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://miskatonic.ged.msu.edu/category/python.html">python</a></li>
-					  						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://miskatonic.ged.msu.edu/category/science.html">science</a></li>
-					  															  						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ged.msu.edu/">GED Lab</a></li>
-					  						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ivory.idyll.org/blog/">Titus Brown</a></li>
-					  					
-				</ul>
-			</div> <!--/#menu-navigation-container-->
-		</div><!-- /#menu -->
-		
-		<div class="page-title">
-					</div>
-	
-		<div id="contents">
-			
-<div class="post type-post status-publish format-standard hentry category-general" id="post">
-	<div class="entry-meta">
-		<div class="date"><a href="http://miskatonic.ged.msu.edu/profiling-with-yep.html">Fri 06 December 2013</a></div>
-				<span class="byline">By <a href="http://miskatonic.ged.msu.edu/author/c-scott.html">C Scott</a></span>
-									<span class="cat-links"><a href="http://miskatonic.ged.msu.edu/category/python.html" title="View all posts in python" rel="category tag">python</a></span>
-			</div> <!-- /#entry-meta -->
-	<div class="main">
-		<h2 class="entry-title">
-			<a href="http://miskatonic.ged.msu.edu/profiling-with-yep.html" title="Permalink to Profiling C++ Extensions with Yep" rel="bookmark">Profiling C++ Extensions with Yep</a>
-		</h2>
-		<div class="entry-content">
-			<p>For those of you who work with both the python codebase and the <tt class="docutils literal">c++</tt> backend, I found a pretty useful tool.
+<div class="row-fluid">
+            <div class="span8 offset2 article-content">
+            
+            <p>For those of you who work with both the python codebase and the <tt class="docutils literal">c++</tt> backend, I found a pretty useful tool.
 Seeing as we work with performance-sensitive software, profiling is very useful; but, it can be a pain
 to profile our <tt class="docutils literal">c++</tt> code when called through python, which necessitates writing <tt class="docutils literal">c++</tt> wrappers
 to functions for basic profiling. The solution I found is called
-<a class="reference external" href="(http://fa.bianp.net/blog/2011/a-profiler-for-python-extensions">yep</a>,
+<a class="reference external" href="http://fa.bianp.net/blog/2011/a-profiler-for-python-extensions">yep</a>,
 which is a python module made specifically to profile <tt class="docutils literal">c++</tt> python extensions. In order to install, simply run:</p>
 <pre class="literal-block">
 sudo apt-get install google-perftools
@@ -99,25 +100,62 @@ google-pprof --gif /usr/bin/python2.7-dbg \
 <div class="figure align-center">
 <img alt="Profile of sparse labeling extension in sweep script" src="../static/images/prof.png" style="width: 100%;" />
 <p class="caption">In this call graph, the python debugging symbols were not properly included; this is resolved by using the
-debuggging executable.</p>
+debugging executable.</p>
 </div>
 <p>The call graph is in standard form, where the first percentange is the time in that particular
 function alone, and where the second percentage is the time in all functions called by that function.
 See the <a class="reference external" href="http://google-perftools.googlecode.com/svn/trunk/doc/cpuprofile.html">description</a> for more details.</p>
 <p>And that's it. Happy profiling!</p>
 
-		</div> <!--/#entry-content-->
-		    		<span class="tag-links"><strong>Tagged</strong>
-    			    			 <a href="http://miskatonic.ged.msu.edu/tag/c.html" rel="tag">c++</a>,  <a href="http://miskatonic.ged.msu.edu/tag/profiling.html" rel="tag">profiling</a>,  <a href="http://miskatonic.ged.msu.edu/tag/programming.html" rel="tag">programming</a>,  <a href="http://miskatonic.ged.msu.edu/tag/python.html" rel="tag">python</a>    		</span>
-    		</div> <!--/#main-->
-</div>  <!--/#post-->
-
-		</div>
-		
-		<div id="footer">
-			<p>Powered by <a href="http://getpelican.com">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-								</div><!-- /#footer -->
-	</div><!-- /#container -->
-	<div style="display:none"></div>
-</body>
+                            
+            <hr/>
+                    </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+                        <h4>Published</h4>
+                        <time pubdate="pubdate" datetime="2013-12-06T00:00:00">Dec 6, 2013</time>
+                                                <h4>Category</h4>
+            <a class="category-link" href="http://miskatonic.ged.msu.edu/categories.html#python-ref">python</a>
+                                    <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                                <li><a href="http://miskatonic.ged.msu.edu/tags.html#c-ref">c++
+                                        <span>1</span>
+                    </a></li>
+                                <li><a href="http://miskatonic.ged.msu.edu/tags.html#profiling-ref">profiling
+                                        <span>1</span>
+                    </a></li>
+                                <li><a href="http://miskatonic.ged.msu.edu/tags.html#programming-ref">programming
+                                        <span>1</span>
+                    </a></li>
+                                <li><a href="http://miskatonic.ged.msu.edu/tags.html#python-ref">python
+                                        <span>1</span>
+                    </a></li>
+                            </ul>
+                                            </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+        <footer>
+<div id="footer">
+    <ul class="footer-content">
+                <li class="elegant-subtitle"><span class="site-name">At the Mountains of Madness</span> - a blog on the perils and wonders of bioinformatics</li>
+                        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>                    <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        
+            
+            </body>
 </html>
