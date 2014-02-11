@@ -7,6 +7,8 @@ SITENAME = u'At the Mountains of Madness'
 SITESUBTITLE =u'a blog on the perils and wonders of bioinformatics'
 SITEURL = 'http://miskatonic.ged.msu.edu'
 
+OUTPUT_PATH = u'blog/'
+
 TIMEZONE = 'US/Eastern'
 
 DEFAULT_LANG = u'en'
