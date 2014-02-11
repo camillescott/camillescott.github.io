@@ -20,7 +20,7 @@ TRANSLATION_FEED_ATOM = None
 
 
 # Theme related stuff
-THEME = '/home/camille/pelican-elegant'
+THEME = 'pelican-elegant'
 #PLUGINS = ['sitemap', 'extract_toc', 'tipue_search']
 MD_EXTENSIONS = ['codehilite(css_class=highlight)', 'extra', 'headerid', 'toc']
 DIRECT_TEMPLATES = (('index', 'tags', 'categories','archives', 'search', '404'))
