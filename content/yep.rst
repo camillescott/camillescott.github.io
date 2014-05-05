@@ -57,7 +57,7 @@ can properly construct callgraphs::
 
 Here is some example output:
 
-.. figure:: ../static/images/prof.png
+.. figure:: static/images/prof.png
   :alt: Profile of sparse labeling extension in sweep script
   :width: 100%
   :align: center  
