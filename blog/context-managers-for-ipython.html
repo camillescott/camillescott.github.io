@@ -98,24 +98,23 @@ While we can turn off the automatic opening and closing of figures with</p>
 </pre>
 <p>we're now stuck with having to manage our own figure context. Suddenly, our
 notebooks aren't nearly as clean and beautiful as they once were, being littered
-with ugly declarations of new figures and axes, calls to <cite>gcf()</cite> and <cite>plt.show()</cite>,
+with ugly declarations of new figures and axes, calls to <tt class="docutils literal">gcf()</tt> and <tt class="docutils literal">plt.show()</tt>,
 and other such not-pretty things. I like pretty things, so I sought out a solution.
 As it tends to do, python delivered.</p>
 <p>Enter context managers!</p>
 <p>Some time ago, many's a programmer was running into a similar problem with
 opening and closing files. To do things properly, we needed to do exception
-handling to properly and cleanly call <cite>close()</cite> on our file
+handling to properly and cleanly call <tt class="docutils literal">close()</tt> on our file
 pointers when something went wrong. To handle that and a number of similar issues,
 python introduced <a class="reference external" href="https://docs.python.org/2/reference/datamodel.html#context-managers">context managers and the with statement</a>. From the docs:</p>
-<pre class="literal-block">
-A context manager is an object that defines the runtime context to be established when executing a with statement. The context manager handles the entry into, and the exit from, the desired runtime context for the execution of the block of code.
-</pre>
+<blockquote>
+A context manager is an object that defines the runtime context to be established when executing a with statement. The context manager handles the entry into, and the exit from, the desired runtime context for the execution of the block of code.</blockquote>
 <p>Though this completely loses the ~awesomeness~ of context managers, it <em>does</em>
 sound about like what we want! In simple terms, context managers are just objects
-that implement the <cite>__enter__</cite> and <cite>__exit__</cite> methods. When you use the <cite>with</cite>
-statement on one of them, <cite>__enter__</cite> is called, where we put our setup code
-; if it returns something, it takes the name given it by <cite>as</cite>. <cite>__exit__</cite> is called after
-the <cite>with</cite> block is left, and contains the teardown code. For our purposes, we want
+that implement the <tt class="docutils literal">__enter__</tt> and <tt class="docutils literal">__exit__</tt> methods. When you use the <tt class="docutils literal">with</tt>
+statement on one of them, <tt class="docutils literal">__enter__</tt> is called, where we put our setup code
+; if it returns something, it takes the name given it by <tt class="docutils literal">as</tt>. <tt class="docutils literal">__exit__</tt> is called after
+the <tt class="docutils literal">with</tt> block is left, and contains the teardown code. For our purposes, we want
 to take care of matplotlib context. Without further ado, let's look at a simple example:</p>
 <pre class="code python literal-block">
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
@@ -132,7 +131,8 @@ to take care of matplotlib context. Without further ado, let's look at a simple 
 
         <span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="n">nrows</span><span class="p">,</span>
                                          <span class="n">ncols</span><span class="o">=</span><span class="n">ncols</span><span class="p">,</span>
-                                         <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">,</span>                                                                   <span class="n">tight_layout</span><span class="o">=</span><span class="n">tight_layout</span><span class="p">,</span>
+                                         <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">,</span>
+                                         <span class="n">tight_layout</span><span class="o">=</span><span class="n">tight_layout</span><span class="p">,</span>
                                          <span class="o">**</span><span class="n">fig_kwds</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">fn</span> <span class="o">=</span> <span class="n">fn</span>
@@ -167,15 +167,15 @@ to take care of matplotlib context. Without further ado, let's look at a simple 
         <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">fig</span>
         <span class="k">print</span> <span class="s">'returning context to'</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">())</span>
 </pre>
-<p>Let's break this down. The <cite>__init__</cite> actually does most of our setup here;
-it takes some basic parameters to pass to <cite>plt.subplots</cite>, as well as some
+<p>Let's break this down. The <tt class="docutils literal">__init__</tt> actually does most of our setup here;
+it takes some basic parameters to pass to <tt class="docutils literal">plt.subplots</tt>, as well as some
 parameters for whether we want to show the plot and whether we want to save the
-result to file(s). The <cite>__enter__</cite> method returns the generated <cite>figure</cite> and
-<cite>axes</cite> objects. Finally, <cite>__exit__</cite> saves the figure to the filename with the
+result to file(s). The <tt class="docutils literal">__enter__</tt> method returns the generated <tt class="docutils literal">figure</tt> and
+<tt class="docutils literal">axes</tt> objects. Finally, <tt class="docutils literal">__exit__</tt> saves the figure to the filename with the
 given extensions (matplotlib uses the extension to infer the file format), and
-shows the plot if necessary. It then calls <cite>close()</cite> on the figure, deletes
-the <cite>axes</cite> objects from the figure, and calls <cite>del</cite> on both instances just
-to be sure. The three expected parameters to <cite>__exit__</cite> are for exception
+shows the plot if necessary. It then calls <tt class="docutils literal">plt.close()</tt> on the figure, deletes
+the <tt class="docutils literal">axes</tt> objects from the figure, and calls <tt class="docutils literal">del</tt> on both instances just
+to be sure. The three expected parameters to <tt class="docutils literal">__exit__</tt> are for exception
 handling, which is discussed in greater detail in the docs.</p>
 <p>Here's an example of how I used it in practice:</p>
 <pre class="code python literal-block">
@@ -187,8 +187,11 @@ handling, which is discussed in greater detail in the docs.</p>
 </pre>
 <p>That's taken directly out of the lamprey <a class="reference external" href="http://nbviewer.ipython.org/github/camillescott/2013-lamprey/blob/lamp3/pub/tale_of_two_transcriptomes_compute.ipynb">notebook</a> where I first implemented this. I usually put a filelink in there, so that
 the resulting image can easily be viewed in its own tab for closer inspection.</p>
-<p>The point is, all the normal boilerplate for handling figures is done in one line,
-and the code is much more clear.</p>
+<p>The point is, all the normal boilerplate for handling figures is done in one line
+and the code is much more clear and pretty! And of course, most importantly, the
+original goal of not automatically displaying figures is also taken care of.</p>
+<p>I consider this yak shaved.</p>
+<p>--camille</p>
 
                             
                             
