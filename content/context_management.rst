@@ -18,11 +18,11 @@ So first, some background! `matplotlib <http://matplotlib.org/index.html>`__ is
 the go-to plotting package for python.  It has many weaknesses, and a whole series
 of posts could be (and has been) written about why we should use something else,
 but for now, its reach is long and it is widely used in the scientific community. 
-It is particularly useful in concert with IPython notebook, where figures can be
+It's particularly useful in concert with IPython notebook, where figures can be
 embedded into cells inline. However, an important feature(?) of matplotlib is that
-its built around a state machine; when it comes to deciding what figure (and other
+it's built around a state machine; when it comes to deciding what figure (and other
 components) are currently being worked with, matplotlib keeps track of the current
-context. That allows you to just call `plot()` at any given time and have your
+context globally. That allows you to just call ``plot()`` at any given time and have your
 figures be pushed more or less where you'd like. It *also* means that you need
 to keep track of the current context, lest you end up drawing a lot of figures
 onto the same plot and producing a terrible abomination from beyond space and time itself.
@@ -31,7 +31,7 @@ IPython has a number of ways of dealing with this. While in its inline mode,
 the default behavior is to simply create a new plotting context at the beginning
 of each cell, and close it at the cell's completion. This is convenient because
 it means the user doesn't have to open and close figures manually, saving a lot
-of coding time. It becomes a burden, however, when you have a large notebook,
+of coding time and boilerplate. It becomes a burden, however, when you have a large notebook,
 with lots of figures, some of which you don't want to be automatically displayed.
 While we can turn off the automatic opening and closing of figures with
 
@@ -48,20 +48,21 @@ As it tends to do, python delivered.
 Enter context managers!
 
 Some time ago, many's a programmer was running into a similar problem with
-opening and closing files. To do things properly, we needed to do exception
+opening and closing files (well, and a lot of other use cases). To do things properly, we needed to do exception
 handling to properly and cleanly call ``close()`` on our file
-pointers when something went wrong. To handle that and a number of similar issues,
+pointers when something went wrong. To handle such instances,
 python introduced `context managers and the with statement <https://docs.python.org/2/reference/datamodel.html#context-managers>`__. From the docs:
 
     A context manager is an object that defines the runtime context to be established when executing a with statement. The context manager handles the entry into, and the exit from, the desired runtime context for the execution of the block of code.
 
-Though this completely loses the ~awesomeness~ of context managers, it *does*
+Though this completely washes out the ~awesomeness~ of context managers, it *does*
 sound about like what we want! In simple terms, context managers are just objects
 that implement the ``__enter__`` and ``__exit__`` methods. When you use the ``with``
 statement on one of them, ``__enter__`` is called, where we put our setup code
 ; if it returns something, it takes the name given it by ``as``. ``__exit__`` is called after 
 the ``with`` block is left, and contains the teardown code. For our purposes, we want
-to take care of matplotlib context. Without further ado, let's look at a simple example:
+to take care of matplotlib context. Without further ado, let's look at an example
+that does what we want:
 
 .. code:: python
 
