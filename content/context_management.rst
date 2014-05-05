@@ -41,7 +41,7 @@ While we can turn off the automatic opening and closing of figures with
 
 we're now stuck with having to manage our own figure context. Suddenly, our
 notebooks aren't nearly as clean and beautiful as they once were, being littered
-with ugly declarations of new figures and axes, calls to `gcf()` and `plt.show()`,
+with ugly declarations of new figures and axes, calls to ``gcf()`` and ``plt.show()``,
 and other such not-pretty things. I like pretty things, so I sought out a solution.
 As it tends to do, python delivered.
 
@@ -49,18 +49,18 @@ Enter context managers!
 
 Some time ago, many's a programmer was running into a similar problem with
 opening and closing files. To do things properly, we needed to do exception
-handling to properly and cleanly call `close()` on our file
+handling to properly and cleanly call ``close()`` on our file
 pointers when something went wrong. To handle that and a number of similar issues,
-python introduced `context managers and the with statement <https://docs.python.org/2/reference/datamodel.html#context-managers>`__. From the docs::
+python introduced `context managers and the with statement <https://docs.python.org/2/reference/datamodel.html#context-managers>`__. From the docs:
 
     A context manager is an object that defines the runtime context to be established when executing a with statement. The context manager handles the entry into, and the exit from, the desired runtime context for the execution of the block of code.
 
 Though this completely loses the ~awesomeness~ of context managers, it *does*
 sound about like what we want! In simple terms, context managers are just objects
-that implement the `__enter__` and `__exit__` methods. When you use the `with`
-statement on one of them, `__enter__` is called, where we put our setup code
-; if it returns something, it takes the name given it by `as`. `__exit__` is called after 
-the `with` block is left, and contains the teardown code. For our purposes, we want
+that implement the ``__enter__`` and ``__exit__`` methods. When you use the ``with``
+statement on one of them, ``__enter__`` is called, where we put our setup code
+; if it returns something, it takes the name given it by ``as``. ``__exit__`` is called after 
+the ``with`` block is left, and contains the teardown code. For our purposes, we want
 to take care of matplotlib context. Without further ado, let's look at a simple example:
 
 .. code:: python
@@ -79,7 +79,8 @@ to take care of matplotlib context. Without further ado, let's look at a simple 
         
 	    self.fig, self.ax = plt.subplots(nrows=nrows, 
 					     ncols=ncols, 
-					     figsize=figsize,									tight_layout=tight_layout, 
+					     figsize=figsize,
+					     tight_layout=tight_layout, 
 					     **fig_kwds)
         
 	    self.fn = fn
@@ -114,15 +115,15 @@ to take care of matplotlib context. Without further ado, let's look at a simple 
 	    del self.fig
 	    print 'returning context to', repr(plt.gcf())
 
-Let's break this down. The `__init__` actually does most of our setup here;
-it takes some basic parameters to pass to `plt.subplots`, as well as some
+Let's break this down. The ``__init__`` actually does most of our setup here;
+it takes some basic parameters to pass to ``plt.subplots``, as well as some
 parameters for whether we want to show the plot and whether we want to save the
-result to file(s). The `__enter__` method returns the generated `figure` and
-`axes` objects. Finally, `__exit__` saves the figure to the filename with the
+result to file(s). The ``__enter__`` method returns the generated ``figure`` and
+``axes`` objects. Finally, ``__exit__`` saves the figure to the filename with the
 given extensions (matplotlib uses the extension to infer the file format), and
-shows the plot if necessary. It then calls `close()` on the figure, deletes
-the `axes` objects from the figure, and calls `del` on both instances just
-to be sure. The three expected parameters to `__exit__` are for exception
+shows the plot if necessary. It then calls ``plt.close()`` on the figure, deletes
+the ``axes`` objects from the figure, and calls ``del`` on both instances just
+to be sure. The three expected parameters to ``__exit__`` are for exception
 handling, which is discussed in greater detail in the docs.
 
 Here's an example of how I used it in practice:
@@ -138,5 +139,10 @@ Here's an example of how I used it in practice:
 That's taken directly out of the lamprey `notebook <http://nbviewer.ipython.org/github/camillescott/2013-lamprey/blob/lamp3/pub/tale_of_two_transcriptomes_compute.ipynb>`__ where I first implemented this. I usually put a filelink in there, so that
 the resulting image can easily be viewed in its own tab for closer inspection.
 
-The point is, all the normal boilerplate for handling figures is done in one line,
-and the code is much more clear.
+The point is, all the normal boilerplate for handling figures is done in one line
+and the code is much more clear and pretty! And of course, most importantly, the
+original goal of not automatically displaying figures is also taken care of.
+
+I consider this yak shaved.
+
+--camille
