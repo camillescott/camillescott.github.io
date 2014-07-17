@@ -29,6 +29,7 @@ TAG_SAVE_AS = ''
 CATEGORY_SAVE_AS = ''
 AUTHOR_SAVE_AS = ''
 DISQUS_SITENAME = 'camillescott'
+GOOGLE_ANALYTICS = 'UA-52937341-1'
 
 # Blogroll
 LINKS =  (('GED Lab', 'http://ged.msu.edu/'), ('Titus Brown', 'http://ivory.idyll.org/blog/'))
