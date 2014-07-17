@@ -51,7 +51,7 @@ But I can talk about trans representation in science, and even in Science. How a
 of once again pointing out the public health concerns of trans sex workers, we have a special issue
 on the pressures that force so many trans women into sex work in the first place? Or on
 the false notions of LGBT people being the root cause of sexually transmitted diseases?
-Or, a special issue of articles written by all trans scientists?
+Or, a special issue of articles written by only trans scientists?
 
 We are not your lab rats. We are not your charitable tax writeoff. We are not your
 fetish objects. We *are* scientists, we *are* mothers, we *are* students, teachers,
