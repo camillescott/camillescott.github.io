@@ -2,7 +2,7 @@ the interesting thing about trans women and science and Science
 ###############################################################
 
 :date: 2014-07-17
-:tags: trans, science, sexism, twigger-warning
+:tags: trans, science, sexism, trigger-warning
 :category: science
 :slug: interesting
 :author: Camille Scott
