@@ -2,40 +2,48 @@
 <html lang="en-US">
     <head>
         <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Camille Scott" />
         <meta name="copyright" content="Camille Scott" />
 
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
 <meta name="keywords" content="python, c++, programming, profiling, python, " />
+
+<meta property="og:title" content="Profiling C++ Extensions with Yep "/>
+<meta property="og:url" content="http://camillescott.github.io/blog/profiling-with-yep.html" />
+<meta property="og:description" content="yep to profile c++ extensions to python, installation and usage" />
+<meta property="og:site_name" content="At the Mountains of Madness" />
+<meta property="og:article:author" content="Camille Scott" />
+<meta property="og:article:published_time" content="2013-12-06T00:00:00" />
+<meta name="twitter:title" content="Profiling C++ Extensions with Yep ">
+<meta name="twitter:description" content="yep to profile c++ extensions to python, installation and usage">
+
         <title>Profiling C++ Extensions with Yep  · At the Mountains of Madness
 </title>
-        <link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
-        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="http://camillescott.github.io/blog/theme/css/style.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="http://camillescott.github.io/blog/theme/css/solarizedlight.css" media="screen">
-        <link rel="shortcut icon" href="http://camillescott.github.io/blog/theme/images/favicon.ico" type="image/x-icon" />
-        <link rel="apple-touch-icon" href="http://camillescott.github.io/blog/theme/images/apple-touch-icon.png" />
-        <link rel="apple-touch-icon" sizes="57x57" href="http://camillescott.github.io/blog/theme/images/apple-touch-icon-57x57.png" />
-        <link rel="apple-touch-icon" sizes="72x72" href="http://camillescott.github.io/blog/theme/images/apple-touch-icon-72x72.png" />
-        <link rel="apple-touch-icon" sizes="114x114" href="http://camillescott.github.io/blog/theme/images/apple-touch-icon-114x114.png" />
-        <link rel="apple-touch-icon" sizes="144x144" href="http://camillescott.github.io/blog/theme/images/apple-touch-icon-144x144.png" />
-        <link rel="icon" href="http://camillescott.github.io/blog/theme/images/apple-touch-icon-144x144.png" />
-    <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-52937341-1']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-    </script>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://camillescott.github.io/blog/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://camillescott.github.io/blog/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://camillescott.github.io/blog/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://camillescott.github.io/blog/theme/css/custom.css" media="screen">
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-52937341-1', 'auto');
+    ga('send', 'pageview');
+</script>
     </head>
     <body>
         <div id="content-sans-footer">
         <div class="navbar navbar-static-top">
             <div class="navbar-inner">
-                <div class="container">
+                <div class="container-fluid">
+                    <div class="span1"></div>
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -60,7 +68,7 @@
                 <div class="span10">
 <article>
 <div class="row-fluid">
-    <header class="page_header span10 offset2">
+    <header class="page-header span10 offset2">
     <h1><a href="http://camillescott.github.io/blog/profiling-with-yep.html"> Profiling C++ Extensions with Yep  </a></h1>
     </header>
 </div>
@@ -68,6 +76,7 @@
 <div class="row-fluid">
         <div class="span8 offset2 article-content">
 
+            
             <p>For those of you who work with both the python codebase and the <tt class="docutils literal">c++</tt> backend, I found a pretty useful tool.
 Seeing as we work with performance-sensitive software, profiling is very useful; but, it can be a pain
 to profile our <tt class="docutils literal">c++</tt> code when called through python, which necessitates writing <tt class="docutils literal">c++</tt> wrappers
@@ -125,7 +134,8 @@ function alone, and where the second percentage is the time in all functions cal
 See the <a class="reference external" href="http://google-perftools.googlecode.com/svn/trunk/doc/cpuprofile.html">description</a> for more details.</p>
 <p>And that's it. Happy profiling!</p>
 
-<section>
+            
+            <section>
 <div class="accordion" id="accordion2">
     <div class="accordion-group">
         <div class="accordion-heading">
@@ -137,7 +147,7 @@ See the <a class="reference external" href="http://google-perftools.googlecode.c
         <div id="disqus_thread" class="accordion-body collapse">
             <div class="accordion-inner">
                 <div class="comments">
-<div id="disqus_thread"></div>
+                    <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'camillescott';
         var disqus_identifier = 'http://camillescott.github.io/blog/profiling-with-yep.html';
@@ -150,47 +160,38 @@ See the <a class="reference external" href="http://google-perftools.googlecode.c
      })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>                </div>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                </div>
             </div>
         </div>
     </div>
 </div>
 </section>
-            <aside>
+
             <hr/>
-            <nav>
-            <ul class="articles_timeline">
- 
-                <li class="previous_article">« <a href="http://camillescott.github.io/blog/the-first-post.html" title="Previous: Welcome to the Madness">Welcome to the Madness</a></li>
- 
-                <li class="next_article"><a href="http://camillescott.github.io/blog/context-managers-for-ipython.html" title="Next: Practical Python: Context Managers and IPython Notebook">Practical Python: Context Managers and IPython Notebook</a> »</li>
-            </ul>
-            </nav>
-            </aside>
         </div>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
- 
             <h4>Published</h4>
             <time pubdate="pubdate" datetime="2013-12-06T00:00:00">Dec 6, 2013</time>
             <h4>Category</h4>
-            <a class="category-link" href="/categories.html#python-ref">python</a> 
+            <a class="category-link" href="http://camillescott.github.io/blog/categories.html#python-ref">python</a>
             <h4>Tags</h4>
-            <ul class="list-of-tags tags-in-article"> 
-                <li><a href="/tags.html#c++-ref">c++
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://camillescott.github.io/blog/tags.html#c-ref">c++
                     <span>1</span>
 </a></li>
-                <li><a href="/tags.html#profiling-ref">profiling
+                <li><a href="http://camillescott.github.io/blog/tags.html#profiling-ref">profiling
                     <span>1</span>
 </a></li>
-                <li><a href="/tags.html#programming-ref">programming
+                <li><a href="http://camillescott.github.io/blog/tags.html#programming-ref">programming
                     <span>1</span>
 </a></li>
-                <li><a href="/tags.html#python-ref">python
+                <li><a href="http://camillescott.github.io/blog/tags.html#python-ref">python
                     <span>2</span>
 </a></li>
             </ul>
-
         </div>
         </section>
 </div>
@@ -199,6 +200,7 @@ See the <a class="reference external" href="http://google-perftools.googlecode.c
                 <div class="span1"></div>
             </div>
         </div>
+        <div id="push"></div>
     </div>
 <footer>
 <div id="footer">
@@ -208,7 +210,7 @@ See the <a class="reference external" href="http://google-perftools.googlecode.c
     </ul>
 </div>
 </footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
-        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
             function validateForm(query)
             {
@@ -216,31 +218,46 @@ See the <a class="reference external" href="http://google-perftools.googlecode.c
             }
         </script>
 
-<script type="text/javascript">
-    var disqus_shortname = 'camillescott';
+            <script type="text/javascript">
+var disqus_shortname = 'camillescott';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<script  language="javascript" type="text/javascript">
+function uncollapse() {
+    if (window.location.hash.match(/^#comment-\d+$/)) {
+        $('#disqus_thread').collapse('show');
+    }
+}
+</script>
+<script type="text/javascript" language="JavaScript">
+uncollapse();
+window.onhashchange=function(){
+    if (window.location.hash.match(/^#comment-\d+$/))
+        window.location.reload(true);
+}
+</script>
+<script>
+$('#disqus_thread').on('shown', function () {
+    var link = document.getElementsByClassName('accordion-toggle');
+    var old_innerHTML = link[0].innerHTML;
+    $(link[0]).fadeOut(500, function() {
+        $(this).text('Click here to hide comments').fadeIn(500);
+    });
+    $('#disqus_thread').on('hidden', function () {
+        $(link[0]).fadeOut(500, function() {
+            $(this).text(old_innerHTML).fadeIn(500);
+        });
+    })
+})
+</script>
 
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-    </script>
-        <script  language="javascript" type="text/javascript">
-            function uncollapse() {
-                var hash_str = window.location.hash;
-                if (window.location.hash.match(/^#comment-\d+$/))
-                {
-                    var hash_str = '#disqus_thread';
-                }
-                $(hash_str).collapse({
-                    toggle: true
-                    })
-            }
-        </script>
 
-        <script type="text/javascript" language="JavaScript">
-            uncollapse(); 
-        </script>
     </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
 </html>
