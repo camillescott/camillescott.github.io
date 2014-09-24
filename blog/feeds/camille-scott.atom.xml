@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>At the Mountains of Madness</title><link href="http://camillescott.github.io/blog/" rel="alternate"></link><link href="http://camillescott.github.io/blog/feeds/camille-scott.atom.xml" rel="self"></link><id>http://camillescott.github.io/blog/</id><updated>2014-07-17T00:00:00-04:00</updated><entry><title>the interesting thing about trans women and science and Science</title><link href="http://camillescott.github.io/blog/interesting.html" rel="alternate"></link><updated>2014-07-17T00:00:00-04:00</updated><author><name>Camille Scott</name></author><id>tag:camillescott.github.io,2014-07-17:blog/interesting.html</id><summary type="html">&lt;p&gt;After a rather unsavory series of comments from one of the editors of Science
+Careers, and the twitter storm that followed, I've been motivated to write. First,
+the background. Science recently ran a &lt;a class="reference external" href="http://www.sciencemag.org/content/345/6193.toc#SpecialIssue"&gt;special issue&lt;/a&gt; on Strategies against HIV/AIDS. The cover of this issue depicts several transgender sex workers, from
+the neck down, in revealing clothing, along with a blurb about high risk groups. Cue Jim Austin and his
+twitter comments. Let's begin with one to set the tone:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;em&gt;Interesting to consider how those gazey males will feel when they find out.&amp;quot;&lt;/em&gt; -- Jim Austin, &amp;#64;SciCareerEditor&lt;/blockquote&gt;
+&lt;p&gt;Interesting is the operative word of the day. Given that this was in response to the pictured
+womens' trans status, perhaps Mr. Austin thinks it's &lt;em&gt;interesting&lt;/em&gt; how often trans women
+are raped, assaulted, and murdered because of such men &amp;quot;finding out.&amp;quot; Or
+perhaps it's more &lt;em&gt;interesting&lt;/em&gt; to observe the casual transphobia displayed by men in positions
+of privilege like himself. After all,&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;em&gt;You realize they are transgender? Does it matter? That at least colors things, no?&lt;/em&gt; -- Jim Austin, &amp;#64;SciCareerEditor&lt;/blockquote&gt;
+&lt;p&gt;Why yes, it does color things, and in very &lt;em&gt;interesting&lt;/em&gt; ways. There is a long and
+very colorful history of the relationship between trans people and scientists.
+We could consider that scientists
+who found trans women &lt;em&gt;interesting&lt;/em&gt; in the 70's and 80's helped set back trans rights by decades.
+We could consider that scientists who found trans women &lt;em&gt;interesting&lt;/em&gt; created a conception of
+trans women being shallow and manipulative by writing as such in their articles, because trans women
+were only okayed for treatment by those same scientists if they acted out those stereotypes.
+We could consider that scientists
+and lawyers who found trans women &lt;em&gt;interesting&lt;/em&gt; created a healthcare system that, for decades, made it
+almost impossible for trans women to get treatment. We could consider that
+scientists who find trans women &lt;em&gt;interesting&lt;/em&gt; have continually used us as lab rats to
+publish poorly-supported sexist conclusions on the differences between gendered brains,
+with no visible knowledge gain given back to the trans community.&lt;/p&gt;
+&lt;p&gt;Or for things our esteemed editor might consider less &lt;em&gt;interesting&lt;/em&gt;, we could consider that actions
+like the recent one only further the common conception that trans women of color
+are good for nothing but satisfying the sexual desires of men (but make sure we call it &amp;quot;raising
+awareness&amp;quot; so people can think this reinforcement is noble). We could consider that many
+trans women are denied careers in fields like, say, science, because of these
+stereotypes. Or we could consider that many trans women are denied careers outright because
+of these stereotypes.&lt;/p&gt;
+&lt;p&gt;And I haven't even talked about the cover yet! I'm not sure I need to; it's been discussed
+&lt;a class="reference external" href="http://scientopia.org/blogs/drugmonkey/2014/07/16/does-science-magazine-actually-sell-many-copies-at-the-newsstand/"&gt;elsewhere&lt;/a&gt; quite nicely.
+But I can talk about trans representation in science, and even in Science. How about instead
+of once again pointing out the public health concerns of trans sex workers, we have a special issue
+on the pressures that force so many trans women into sex work in the first place? Or on
+the false notions of LGBT people being the root cause of sexually transmitted diseases?
+Or, a special issue of articles written by only trans scientists?&lt;/p&gt;
+&lt;p&gt;We are not your lab rats. We are not your charitable tax writeoff. We are not your
+fetish objects. We &lt;em&gt;are&lt;/em&gt; scientists, we &lt;em&gt;are&lt;/em&gt; mothers, we &lt;em&gt;are&lt;/em&gt; students, teachers,
+lawyers, doctors, sex workers, dock workers, factory workers, social workers,
+musicians, artists. We are people. And we are more than &amp;quot;interesting.&amp;quot;&lt;/p&gt;
+&lt;p&gt;-Camille&lt;/p&gt;
+</summary><category term="trans"></category><category term="science"></category><category term="sexism"></category><category term="trigger-warning"></category></entry><entry><title>Practical Python: Context Managers and IPython Notebook</title><link href="http://camillescott.github.io/blog/context-managers-for-ipython.html" rel="alternate"></link><updated>2014-05-05T00:00:00-04:00</updated><author><name>Camille Scott</name></author><id>tag:camillescott.github.io,2014-05-05:blog/context-managers-for-ipython.html</id><summary type="html">&lt;p&gt;Recently, I've been making a lot of progress on the lamprey transcriptome project,
+and that has involved a lot of IPython notebook. While I'll talk about lamprey in
+a later post, I first want to talk about a nice technical tidbit I came up with
+while trying to manage a large IPython notebook with lots of figures. This involved
+learning some more about the internals of matplotlib, as well as the usefulness of
+the &lt;cite&gt;with&lt;/cite&gt; statement in python.&lt;/p&gt;
+&lt;p&gt;So first, some background! &lt;a class="reference external" href="http://matplotlib.org/index.html"&gt;matplotlib&lt;/a&gt; is
+the go-to plotting package for python.  It has many weaknesses, and a whole series
+of posts could be (and has been) written about why we should use something else,
+but for now, its reach is long and it is widely used in the scientific community.
+It's particularly useful in concert with IPython notebook, where figures can be
+embedded into cells inline. However, an important feature(?) of matplotlib is that
+it's built around a state machine; when it comes to deciding what figure (and other
+components) are currently being worked with, matplotlib keeps track of the current
+context globally. That allows you to just call &lt;tt class="docutils literal"&gt;plot()&lt;/tt&gt; at any given time and have your
+figures be pushed more or less where you'd like. It &lt;em&gt;also&lt;/em&gt; means that you need
+to keep track of the current context, lest you end up drawing a lot of figures
+onto the same plot and producing a terrible abomination from beyond space and time itself.&lt;/p&gt;
+&lt;p&gt;IPython has a number of ways of dealing with this. While in its inline mode,
+the default behavior is to simply create a new plotting context at the beginning
+of each cell, and close it at the cell's completion. This is convenient because
+it means the user doesn't have to open and close figures manually, saving a lot
+of coding time and boilerplate. It becomes a burden, however, when you have a large notebook,
+with lots of figures, some of which you don't want to be automatically displayed.
+While we can turn off the automatic opening and closing of figures with&lt;/p&gt;
+&lt;pre class="code python literal-block"&gt;
+&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt; &lt;span class="n"&gt;InlineBackend&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close_figures&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;we're now stuck with having to manage our own figure context. Suddenly, our
+notebooks aren't nearly as clean and beautiful as they once were, being littered
+with ugly declarations of new figures and axes, calls to &lt;tt class="docutils literal"&gt;gcf()&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;plt.show()&lt;/tt&gt;,
+and other such not-pretty things. I like pretty things, so I sought out a solution.
+As it tends to do, python delivered.&lt;/p&gt;
+&lt;p&gt;Enter context managers!&lt;/p&gt;
+&lt;p&gt;Some time ago, many's a programmer was running into a similar problem with
+opening and closing files (well, and a lot of other use cases). To do things properly, we needed to do exception
+handling to properly and cleanly call &lt;tt class="docutils literal"&gt;close()&lt;/tt&gt; on our file
+pointers when something went wrong. To handle such instances,
+python introduced &lt;a class="reference external" href="https://docs.python.org/2/reference/datamodel.html#context-managers"&gt;context managers and the with statement&lt;/a&gt;. From the docs:&lt;/p&gt;
+&lt;blockquote&gt;
+A context manager is an object that defines the runtime context to be established when executing a with statement. The context manager handles the entry into, and the exit from, the desired runtime context for the execution of the block of code.&lt;/blockquote&gt;
+&lt;p&gt;Though this completely washes out the ~awesomeness~ of context managers, it &lt;em&gt;does&lt;/em&gt;
+sound about like what we want! In simple terms, context managers are just objects
+that implement the &lt;tt class="docutils literal"&gt;__enter__&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;__exit__&lt;/tt&gt; methods. When you use the &lt;tt class="docutils literal"&gt;with&lt;/tt&gt;
+statement on one of them, &lt;tt class="docutils literal"&gt;__enter__&lt;/tt&gt; is called, where we put our setup code
+; if it returns something, it takes the name given it by &lt;tt class="docutils literal"&gt;as&lt;/tt&gt;. &lt;tt class="docutils literal"&gt;__exit__&lt;/tt&gt; is called after
+the &lt;tt class="docutils literal"&gt;with&lt;/tt&gt; block is left, and contains the teardown code. For our purposes, we want
+to take care of matplotlib context. Without further ado, let's look at an example
+that does what we want:&lt;/p&gt;
+&lt;pre class="code python literal-block"&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;FigManager&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fn&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;''&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;exts&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;'svg'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'pdf'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'png'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'eps'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+                &lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;nrows&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ncols&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                &lt;span class="n"&gt;figsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;tight_layout&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;fig_kwds&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gcf&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;'leaving context of'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;repr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gcf&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ax&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subplots&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;nrows&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;nrows&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                                         &lt;span class="n"&gt;ncols&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;ncols&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                                         &lt;span class="n"&gt;figsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;figsize&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                                         &lt;span class="n"&gt;tight_layout&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;tight_layout&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                                         &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;fig_kwds&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fn&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fn&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;exts&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;show&lt;/span&gt;
+
+        &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fig&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gcf&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__enter__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ax&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__exit__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;exc_t&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;exc_v&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;trace_b&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;exc_t&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;'ERROR'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;exc_t&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;exc_v&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;trace_b&lt;/span&gt;
+
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fn&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;'saving figure'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;repr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;ext&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exts&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;savefig&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'{}.{}'&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fn&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ext&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fig&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gcf&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;'showing figure'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;repr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;'closing figure'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;repr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;delaxes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;del&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ax&lt;/span&gt;
+        &lt;span class="k"&gt;del&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fig&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;'returning context to'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;repr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gcf&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Let's break this down. The &lt;tt class="docutils literal"&gt;__init__&lt;/tt&gt; actually does most of our setup here;
+it takes some basic parameters to pass to &lt;tt class="docutils literal"&gt;plt.subplots&lt;/tt&gt;, as well as some
+parameters for whether we want to show the plot and whether we want to save the
+result to file(s). The &lt;tt class="docutils literal"&gt;__enter__&lt;/tt&gt; method returns the generated &lt;tt class="docutils literal"&gt;figure&lt;/tt&gt; and
+&lt;tt class="docutils literal"&gt;axes&lt;/tt&gt; objects. Finally, &lt;tt class="docutils literal"&gt;__exit__&lt;/tt&gt; saves the figure to the filename with the
+given extensions (matplotlib uses the extension to infer the file format), and
+shows the plot if necessary. It then calls &lt;tt class="docutils literal"&gt;plt.close()&lt;/tt&gt; on the figure, deletes
+the &lt;tt class="docutils literal"&gt;axes&lt;/tt&gt; objects from the figure, and calls &lt;tt class="docutils literal"&gt;del&lt;/tt&gt; on both instances just
+to be sure. The three expected parameters to &lt;tt class="docutils literal"&gt;__exit__&lt;/tt&gt; are for exception
+handling, which is discussed in greater detail in the docs.&lt;/p&gt;
+&lt;p&gt;Here's an example of how I used it in practice:&lt;/p&gt;
+&lt;pre class="code python literal-block"&gt;
+&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;FigManager&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'genes_per_sample'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;figsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;tall_size&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+    &lt;span class="n"&gt;genes_support_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;kind&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'barh'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fontsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;14&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;labels_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_title&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'Represented Genes per Sample'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;FileLink&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'genes_per_sample.svg'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;That's taken directly out of the lamprey &lt;a class="reference external" href="http://nbviewer.ipython.org/github/camillescott/2013-lamprey/blob/lamp3/pub/tale_of_two_transcriptomes_compute.ipynb"&gt;notebook&lt;/a&gt; where I first implemented this. I usually put a filelink in there, so that
+the resulting image can easily be viewed in its own tab for closer inspection.&lt;/p&gt;
+&lt;p&gt;The point is, all the normal boilerplate for handling figures is done in one line
+and the code is much more clear and pretty! And of course, most importantly, the
+original goal of not automatically displaying figures is also taken care of.&lt;/p&gt;
+&lt;p&gt;I consider this yak shaved.&lt;/p&gt;
+&lt;p&gt;--camille&lt;/p&gt;
+</summary><category term="python"></category><category term="ipython"></category><category term="matplotlib"></category><category term="plotting"></category></entry><entry><title>Profiling C++ Extensions with Yep</title><link href="http://camillescott.github.io/blog/profiling-with-yep.html" rel="alternate"></link><updated>2013-12-06T00:00:00-05:00</updated><author><name>Camille Scott</name></author><id>tag:camillescott.github.io,2013-12-06:blog/profiling-with-yep.html</id><summary type="html">&lt;p&gt;For those of you who work with both the python codebase and the &lt;tt class="docutils literal"&gt;c++&lt;/tt&gt; backend, I found a pretty useful tool.
+Seeing as we work with performance-sensitive software, profiling is very useful; but, it can be a pain
+to profile our &lt;tt class="docutils literal"&gt;c++&lt;/tt&gt; code when called through python, which necessitates writing &lt;tt class="docutils literal"&gt;c++&lt;/tt&gt; wrappers
+to functions for basic profiling. The solution I found is called
+&lt;a class="reference external" href="http://fa.bianp.net/blog/2011/a-profiler-for-python-extensions"&gt;yep&lt;/a&gt;,
+which is a python module made specifically to profile &lt;tt class="docutils literal"&gt;c++&lt;/tt&gt; python extensions. In order to install, simply run:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+sudo apt-get install google-perftools
+sudo apt-get install python-dbg
+pip install yep
+&lt;/pre&gt;
+&lt;p&gt;For khmer, you should also be sure to turn on debugging at compile time:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+cd /path/to/khmer
+make debug
+&lt;/pre&gt;
+&lt;p&gt;The first is the python module implementing the profiler; the second is the tool for analyzing the resulting
+profile information.&lt;/p&gt;
+&lt;p&gt;There are a couple ways to use it. You can call it directly from the command line with:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+python -m yep [options] -- /path/to/script [args ... ]
+&lt;/pre&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;--&lt;/span&gt;&lt;/tt&gt; is necessary, as it tells UNIX not to parse the resulting arguments as flag arguments, which allows
+the profiler to pass them on to the script being profiled instead of choking on them itself. Thanks for
+this trick, &amp;#64;mr-c. Also make sure to use the absolute path to the script to be profiled.&lt;/p&gt;
+&lt;p&gt;You can also use the module directly in your code, with:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+import yep
+yep.start('outname')
+&amp;lt;code to profile...&amp;gt;
+yep.stop()
+&lt;/pre&gt;
+&lt;p&gt;The resulting file is then visualized using google-pprof, with:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+google-pprof --gif &amp;lt;python executable&amp;gt; &amp;lt;profile&amp;gt; &amp;gt; prof.gif
+&lt;/pre&gt;
+&lt;p&gt;In order to get python debugging symbols, you need to use the debugging executable. So, while you may
+run the script in your virtualenv if using one, you give google-pprof the debug executable so it
+can properly construct callgraphs:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+python -m yep -- /w/khmer/scripts/sweep-reads-by-partition-buffered.py \
+ -k 25 -x 1e9 -o test_sweep -i /w/tests/test-sweep-contigs.fp \
+/w/tests/test-sweep-reads.fa
+google-pprof --gif /usr/bin/python2.7-dbg \
+ sweep-reads-by-partition-buffer.py.prof &amp;gt; prof.gif
+&lt;/pre&gt;
+&lt;p&gt;Here is some example output:&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;img alt="Profile of sparse labeling extension in sweep script" src="static/images/prof.png" style="width: 100%;" /&gt;
+&lt;p class="caption"&gt;In this call graph, the python debugging symbols were not properly included; this is resolved by using the
+debugging executable.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;The call graph is in standard form, where the first percentange is the time in that particular
+function alone, and where the second percentage is the time in all functions called by that function.
+See the &lt;a class="reference external" href="http://google-perftools.googlecode.com/svn/trunk/doc/cpuprofile.html"&gt;description&lt;/a&gt; for more details.&lt;/p&gt;
+&lt;p&gt;And that's it. Happy profiling!&lt;/p&gt;
+</summary><category term="python"></category><category term="c++"></category><category term="programming"></category><category term="profiling"></category></entry><entry><title>Welcome to the Madness</title><link href="http://camillescott.github.io/blog/the-first-post.html" rel="alternate"></link><updated>2013-09-02T01:36:00-04:00</updated><author><name>Camille Scott</name></author><id>tag:camillescott.github.io,2013-09-02:blog/the-first-post.html</id><summary type="html">&lt;p&gt;Welcome to the Mountains of Madness.&lt;/p&gt;
+&lt;p&gt;Why, you might ask, are we at the Mountains of Madness?
+To begin, I'll provide a quote:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;em&gt;Bioinformatics is like being slowly bitten to death by ants.&lt;/em&gt; --&lt;a class="reference external" href="http://ivory.idyll.org/blog"&gt;C. Titus Brown&lt;/a&gt;&lt;/blockquote&gt;
+&lt;p&gt;Spend some time trying to assemble a highly polymorphic genome, or fumbling around
+the NCBI database, and you'll understand why we're at the Mountains of Madness.&lt;/p&gt;
+&lt;p&gt;In all seriousness, this blog is intended to be about bioinformatics, and my work
+in it. I am a second-year PhD student at Michigan State University, working in the &lt;a class="reference external" href="http://ged.msu.edu"&gt;GED Lab&lt;/a&gt; under Titus Brown.
+When we're not exploring the Mountains of Madness, hoping the Old Ones will provide insights
+into assembly or reveal to us better probabilistic data structures, our lab spends a
+lot of time discussing the utility of maintaining an online presence in science; this is
+my foray into that realm! With any luck, I hope to update regularly. Aside from the obvious
+benefits of networking with others in the field and staking my claim in the research world,
+a blog has the secondary benefit of giving a set goal to work toward -- having something
+concrete to write about in a semi-formal way, on a semi-monthly or more basis.&lt;/p&gt;
+&lt;p&gt;To kick things off, a post on my recent experience at the Marine Biological Lab will be coming soon!
+I'll talk about some lessons learned, my thoughts on teaching computational skills to biologists,
+and provide a small exercise in assembly that we used. Until then,&lt;/p&gt;
+&lt;p&gt;-Camille&lt;/p&gt;
+</summary><category term="introduction"></category><category term="first"></category></entry></feed>
