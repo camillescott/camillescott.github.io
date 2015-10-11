@@ -78,11 +78,11 @@ account. Feel free to <a href='mailto:camille.scott.w@gmail.com'>email</a> me!
 '''}
 
 PROJECTS = [{'name': 'Lamprey RNA-Seq Project',
-                'url': 'https://github.com/camillescott/2013-lamprey',
+                'url': 'https://github.com/dib-lab/2015-petMarSB',
                 'description': 'Pipelines and analysis for the Petromyzon marinus de novo transcriptome assembly project'},
-            {'name': 'peasoup',
-                'url': 'https://github.com/camillescott/peasoup',
-                'description': 'Collection of pydoit tasks and utility and analysis scripts and functions for sequencing pipelines'},
+            {'name': 'dammit',
+                'url': 'https://github.com/camillescott/dammit',
+                'description': 'Simple de novo transcriptome annotation'},
             {'name': 'OARR Compendium',
                 'url': 'http://camillescott.github.io/oarr-compendium',
                 'description': 'Collection of links to philosophies and practices in open access and reproducible research'},
@@ -90,6 +90,6 @@ PROJECTS = [{'name': 'Lamprey RNA-Seq Project',
                 'url': 'http://camillescott.github.io/resume',
                 'description': 'My CV! (pdf)'},
             {'name': 'khmer',
-                'url': 'https://github.com/ged-lab/khmer',
+                'url': 'https://github.com/dib-lab/khmer',
                 'description': '[contributor] In-memory nucleotide sequence k-mer counting, filtering, graph traversal and more'},
             ]
