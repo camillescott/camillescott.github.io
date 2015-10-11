@@ -13,11 +13,11 @@
 <meta name="keywords" content="python, c++, programming, profiling, python, " />
 
 <meta property="og:title" content="Profiling C++ Extensions with Yep "/>
-<meta property="og:url" content="http://camillescott.github.io/blog/profiling-with-yep.html" />
+<meta property="og:url" content="http://miskatonic.ged.msu.edu/profiling-with-yep.html" />
 <meta property="og:description" content="yep to profile c++ extensions to python, installation and usage" />
 <meta property="og:site_name" content="At the Mountains of Madness" />
 <meta property="og:article:author" content="Camille Scott" />
-<meta property="og:article:published_time" content="2013-12-06T00:00:00" />
+<meta property="og:article:published_time" content="2013-12-06T00:00:00-05:00" />
 <meta name="twitter:title" content="Profiling C++ Extensions with Yep ">
 <meta name="twitter:description" content="yep to profile c++ extensions to python, installation and usage">
 
@@ -25,10 +25,11 @@
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="http://camillescott.github.io/blog/theme/css/pygments.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="http://camillescott.github.io/blog/theme/tipuesearch/tipuesearch.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="http://camillescott.github.io/blog/theme/css/elegant.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="http://camillescott.github.io/blog/theme/css/custom.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://miskatonic.ged.msu.edu/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://miskatonic.ged.msu.edu/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://miskatonic.ged.msu.edu/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://miskatonic.ged.msu.edu/theme/css/custom.css" media="screen">
+        <link href="http://miskatonic.ged.msu.edu/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="At the Mountains of Madness - Full Atom Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -49,14 +50,14 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="http://camillescott.github.io/blog/"><span class=site-name>At the Mountains of Madness</span></a>
+                    <a class="brand" href="http://miskatonic.ged.msu.edu/"><span class=site-name>At the Mountains of Madness</span></a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">
-                            <li ><a href="http://camillescott.github.io/blog">Home</a></li>
-                            <li ><a href="http://camillescott.github.io/blog/categories.html">Categories</a></li>
-                            <li ><a href="http://camillescott.github.io/blog/tags.html">Tags</a></li>
-                            <li ><a href="http://camillescott.github.io/blog/archives.html">Archives</a></li>
-                            <li><form class="navbar-search" action="http://camillescott.github.io/blog/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            <li ><a href="http://miskatonic.ged.msu.edu">Home</a></li>
+                            <li ><a href="http://miskatonic.ged.msu.edu/categories.html">Categories</a></li>
+                            <li ><a href="http://miskatonic.ged.msu.edu/tags.html">Tags</a></li>
+                            <li ><a href="http://miskatonic.ged.msu.edu/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://miskatonic.ged.msu.edu/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
                         </ul>
                     </div>
                 </div>
@@ -69,7 +70,7 @@
 <article>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="http://camillescott.github.io/blog/profiling-with-yep.html"> Profiling C++ Extensions with Yep  </a></h1>
+    <h1><a href="http://miskatonic.ged.msu.edu/profiling-with-yep.html"> Profiling C++ Extensions with Yep  </a></h1>
     </header>
 </div>
 
@@ -140,7 +141,7 @@ See the <a class="reference external" href="http://google-perftools.googlecode.c
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
-                href="http://camillescott.github.io/blog/profiling-with-yep.html#disqus_thread">
+                href="http://miskatonic.ged.msu.edu/profiling-with-yep.html#disqus_thread">
                 Comments
             </a>
         </div>
@@ -150,8 +151,8 @@ See the <a class="reference external" href="http://google-perftools.googlecode.c
                     <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'camillescott';
-        var disqus_identifier = 'http://camillescott.github.io/blog/profiling-with-yep.html';
-    var disqus_url = 'http://camillescott.github.io/blog/profiling-with-yep.html';
+        var disqus_identifier = 'http://miskatonic.ged.msu.edu/profiling-with-yep.html';
+    var disqus_url = 'http://miskatonic.ged.msu.edu/profiling-with-yep.html';
 
     (function() {
          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -174,21 +175,21 @@ See the <a class="reference external" href="http://google-perftools.googlecode.c
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2013-12-06T00:00:00">Dec 6, 2013</time>
+            <time pubdate="pubdate" datetime="2013-12-06T00:00:00-05:00">Dec 6, 2013</time>
             <h4>Category</h4>
-            <a class="category-link" href="http://camillescott.github.io/blog/categories.html#python-ref">python</a>
+            <a class="category-link" href="http://miskatonic.ged.msu.edu/categories.html#python-ref">python</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="http://camillescott.github.io/blog/tags.html#c-ref">c++
+                <li><a href="http://miskatonic.ged.msu.edu/tags.html#c-ref">c++
                     <span>1</span>
 </a></li>
-                <li><a href="http://camillescott.github.io/blog/tags.html#profiling-ref">profiling
+                <li><a href="http://miskatonic.ged.msu.edu/tags.html#profiling-ref">profiling
                     <span>1</span>
 </a></li>
-                <li><a href="http://camillescott.github.io/blog/tags.html#programming-ref">programming
+                <li><a href="http://miskatonic.ged.msu.edu/tags.html#programming-ref">programming
                     <span>1</span>
 </a></li>
-                <li><a href="http://camillescott.github.io/blog/tags.html#python-ref">python
+                <li><a href="http://miskatonic.ged.msu.edu/tags.html#python-ref">python
                     <span>2</span>
 </a></li>
             </ul>

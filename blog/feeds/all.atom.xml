@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>At the Mountains of Madness</title><link>http://miskatonic.ged.msu.edu/</link><description>a blog on the perils and wonders of bioinformatics</description><atom:link href="http://miskatonic.ged.msu.edu/feeds/camille-scott.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 17 Jul 2014 00:00:00 -0400</lastBuildDate><item><title>the interesting thing about trans women and science and Science</title><link>http://miskatonic.ged.msu.edu/interesting.html</link><description>&lt;p&gt;After a rather unsavory series of comments from one of the editors of Science
+<feed xmlns="http://www.w3.org/2005/Atom"><title>At the Mountains of Madness</title><link href="http://miskatonic.ged.msu.edu/" rel="alternate"></link><link href="http://miskatonic.ged.msu.edu/feeds/all.atom.xml" rel="self"></link><id>http://miskatonic.ged.msu.edu/</id><updated>2014-07-17T00:00:00-04:00</updated><entry><title>the interesting thing about trans women and science and Science</title><link href="http://miskatonic.ged.msu.edu/interesting.html" rel="alternate"></link><updated>2014-07-17T00:00:00-04:00</updated><author><name>Camille Scott</name></author><id>tag:miskatonic.ged.msu.edu,2014-07-17:interesting.html</id><summary type="html">&lt;p&gt;After a rather unsavory series of comments from one of the editors of Science
 Careers, and the twitter storm that followed, I've been motivated to write. First,
 the background. Science recently ran a &lt;a class="reference external" href="http://www.sciencemag.org/content/345/6193.toc#SpecialIssue"&gt;special issue&lt;/a&gt; on Strategies against HIV/AIDS. The cover of this issue depicts several transgender sex workers, from
 the neck down, in revealing clothing, along with a blurb about high risk groups. Cue Jim Austin and his
@@ -45,7 +45,7 @@ fetish objects. We &lt;em&gt;are&lt;/em&gt; scientists, we &lt;em&gt;are&lt;/em&
 lawyers, doctors, sex workers, dock workers, factory workers, social workers,
 musicians, artists. We are people. And we are more than &amp;quot;interesting.&amp;quot;&lt;/p&gt;
 &lt;p&gt;-Camille&lt;/p&gt;
-</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Camille Scott</dc:creator><pubDate>Thu, 17 Jul 2014 00:00:00 -0400</pubDate><guid>tag:miskatonic.ged.msu.edu,2014-07-17:interesting.html</guid><category>trans</category><category>science</category><category>sexism</category><category>trigger-warning</category></item><item><title>Practical Python: Context Managers and IPython Notebook</title><link>http://miskatonic.ged.msu.edu/context-managers-for-ipython.html</link><description>&lt;p&gt;Recently, I've been making a lot of progress on the lamprey transcriptome project,
+</summary><category term="trans"></category><category term="science"></category><category term="sexism"></category><category term="trigger-warning"></category></entry><entry><title>Practical Python: Context Managers and IPython Notebook</title><link href="http://miskatonic.ged.msu.edu/context-managers-for-ipython.html" rel="alternate"></link><updated>2014-05-05T00:00:00-04:00</updated><author><name>Camille Scott</name></author><id>tag:miskatonic.ged.msu.edu,2014-05-05:context-managers-for-ipython.html</id><summary type="html">&lt;p&gt;Recently, I've been making a lot of progress on the lamprey transcriptome project,
 and that has involved a lot of IPython notebook. While I'll talk about lamprey in
 a later post, I first want to talk about a nice technical tidbit I came up with
 while trying to manage a large IPython notebook with lots of figures. This involved
@@ -170,7 +170,7 @@ and the code is much more clear and pretty! And of course, most importantly, the
 original goal of not automatically displaying figures is also taken care of.&lt;/p&gt;
 &lt;p&gt;I consider this yak shaved.&lt;/p&gt;
 &lt;p&gt;--camille&lt;/p&gt;
-</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Camille Scott</dc:creator><pubDate>Mon, 05 May 2014 00:00:00 -0400</pubDate><guid>tag:miskatonic.ged.msu.edu,2014-05-05:context-managers-for-ipython.html</guid><category>python</category><category>ipython</category><category>matplotlib</category><category>plotting</category></item><item><title>Profiling C++ Extensions with Yep</title><link>http://miskatonic.ged.msu.edu/profiling-with-yep.html</link><description>&lt;p&gt;For those of you who work with both the python codebase and the &lt;tt class="docutils literal"&gt;c++&lt;/tt&gt; backend, I found a pretty useful tool.
+</summary><category term="python"></category><category term="ipython"></category><category term="matplotlib"></category><category term="plotting"></category></entry><entry><title>Profiling C++ Extensions with Yep</title><link href="http://miskatonic.ged.msu.edu/profiling-with-yep.html" rel="alternate"></link><updated>2013-12-06T00:00:00-05:00</updated><author><name>Camille Scott</name></author><id>tag:miskatonic.ged.msu.edu,2013-12-06:profiling-with-yep.html</id><summary type="html">&lt;p&gt;For those of you who work with both the python codebase and the &lt;tt class="docutils literal"&gt;c++&lt;/tt&gt; backend, I found a pretty useful tool.
 Seeing as we work with performance-sensitive software, profiling is very useful; but, it can be a pain
 to profile our &lt;tt class="docutils literal"&gt;c++&lt;/tt&gt; code when called through python, which necessitates writing &lt;tt class="docutils literal"&gt;c++&lt;/tt&gt; wrappers
 to functions for basic profiling. The solution I found is called
@@ -226,7 +226,7 @@ debugging executable.&lt;/p&gt;
 function alone, and where the second percentage is the time in all functions called by that function.
 See the &lt;a class="reference external" href="http://google-perftools.googlecode.com/svn/trunk/doc/cpuprofile.html"&gt;description&lt;/a&gt; for more details.&lt;/p&gt;
 &lt;p&gt;And that's it. Happy profiling!&lt;/p&gt;
-</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Camille Scott</dc:creator><pubDate>Fri, 06 Dec 2013 00:00:00 -0500</pubDate><guid>tag:miskatonic.ged.msu.edu,2013-12-06:profiling-with-yep.html</guid><category>python</category><category>c++</category><category>programming</category><category>profiling</category></item><item><title>Welcome to the Madness</title><link>http://miskatonic.ged.msu.edu/the-first-post.html</link><description>&lt;p&gt;Welcome to the Mountains of Madness.&lt;/p&gt;
+</summary><category term="python"></category><category term="c++"></category><category term="programming"></category><category term="profiling"></category></entry><entry><title>Welcome to the Madness</title><link href="http://miskatonic.ged.msu.edu/the-first-post.html" rel="alternate"></link><updated>2013-09-02T01:36:00-04:00</updated><author><name>Camille Scott</name></author><id>tag:miskatonic.ged.msu.edu,2013-09-02:the-first-post.html</id><summary type="html">&lt;p&gt;Welcome to the Mountains of Madness.&lt;/p&gt;
 &lt;p&gt;Why, you might ask, are we at the Mountains of Madness?
 To begin, I'll provide a quote:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -246,4 +246,4 @@ concrete to write about in a semi-formal way, on a semi-monthly or more basis.&l
 I'll talk about some lessons learned, my thoughts on teaching computational skills to biologists,
 and provide a small exercise in assembly that we used. Until then,&lt;/p&gt;
 &lt;p&gt;-Camille&lt;/p&gt;
-</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Camille Scott</dc:creator><pubDate>Mon, 02 Sep 2013 01:36:00 -0400</pubDate><guid>tag:miskatonic.ged.msu.edu,2013-09-02:the-first-post.html</guid><category>introduction</category><category>first</category></item></channel></rss>
+</summary><category term="introduction"></category><category term="first"></category></entry></feed>
