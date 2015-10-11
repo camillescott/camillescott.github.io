@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Camille Scott" />
+        <meta name="copyright" content="Camille Scott" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="python, c++, programming, profiling, python, " />
+
+<meta property="og:title" content="Profiling C++ Extensions with Yep "/>
+<meta property="og:url" content="http://miskatonic.ged.msu.edu/profiling-with-yep.html" />
+<meta property="og:description" content="yep to profile c++ extensions to python, installation and usage" />
+<meta property="og:site_name" content="At the Mountains of Madness" />
+<meta property="og:article:author" content="Camille Scott" />
+<meta property="og:article:published_time" content="2013-12-06T00:00:00-05:00" />
+<meta name="twitter:title" content="Profiling C++ Extensions with Yep ">
+<meta name="twitter:description" content="yep to profile c++ extensions to python, installation and usage">
+
+        <title>Profiling C++ Extensions with Yep  · At the Mountains of Madness
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://miskatonic.ged.msu.edu/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://miskatonic.ged.msu.edu/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://miskatonic.ged.msu.edu/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://miskatonic.ged.msu.edu/theme/css/custom.css" media="screen">
+        <link href="http://miskatonic.ged.msu.edu/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="At the Mountains of Madness - Full Atom Feed" />
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-52937341-1', 'auto');
+    ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <div class="span1"></div>
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://miskatonic.ged.msu.edu/"><span class=site-name>At the Mountains of Madness</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://miskatonic.ged.msu.edu">Home</a></li>
+                            <li ><a href="http://miskatonic.ged.msu.edu/categories.html">Categories</a></li>
+                            <li ><a href="http://miskatonic.ged.msu.edu/tags.html">Tags</a></li>
+                            <li ><a href="http://miskatonic.ged.msu.edu/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://miskatonic.ged.msu.edu/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://miskatonic.ged.msu.edu/profiling-with-yep.html"> Profiling C++ Extensions with Yep  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <p>For those of you who work with both the python codebase and the <tt class="docutils literal">c++</tt> backend, I found a pretty useful tool.
+Seeing as we work with performance-sensitive software, profiling is very useful; but, it can be a pain
+to profile our <tt class="docutils literal">c++</tt> code when called through python, which necessitates writing <tt class="docutils literal">c++</tt> wrappers
+to functions for basic profiling. The solution I found is called
+<a class="reference external" href="http://fa.bianp.net/blog/2011/a-profiler-for-python-extensions">yep</a>,
+which is a python module made specifically to profile <tt class="docutils literal">c++</tt> python extensions. In order to install, simply run:</p>
+<pre class="literal-block">
+sudo apt-get install google-perftools
+sudo apt-get install python-dbg
+pip install yep
+</pre>
+<p>For khmer, you should also be sure to turn on debugging at compile time:</p>
+<pre class="literal-block">
+cd /path/to/khmer
+make debug
+</pre>
+<p>The first is the python module implementing the profiler; the second is the tool for analyzing the resulting
+profile information.</p>
+<p>There are a couple ways to use it. You can call it directly from the command line with:</p>
+<pre class="literal-block">
+python -m yep [options] -- /path/to/script [args ... ]
+</pre>
+<p>The <tt class="docutils literal"><span class="pre">--</span></tt> is necessary, as it tells UNIX not to parse the resulting arguments as flag arguments, which allows
+the profiler to pass them on to the script being profiled instead of choking on them itself. Thanks for
+this trick, &#64;mr-c. Also make sure to use the absolute path to the script to be profiled.</p>
+<p>You can also use the module directly in your code, with:</p>
+<pre class="literal-block">
+import yep
+yep.start('outname')
+&lt;code to profile...&gt;
+yep.stop()
+</pre>
+<p>The resulting file is then visualized using google-pprof, with:</p>
+<pre class="literal-block">
+google-pprof --gif &lt;python executable&gt; &lt;profile&gt; &gt; prof.gif
+</pre>
+<p>In order to get python debugging symbols, you need to use the debugging executable. So, while you may
+run the script in your virtualenv if using one, you give google-pprof the debug executable so it
+can properly construct callgraphs:</p>
+<pre class="literal-block">
+python -m yep -- /w/khmer/scripts/sweep-reads-by-partition-buffered.py \
+ -k 25 -x 1e9 -o test_sweep -i /w/tests/test-sweep-contigs.fp \
+/w/tests/test-sweep-reads.fa
+google-pprof --gif /usr/bin/python2.7-dbg \
+ sweep-reads-by-partition-buffer.py.prof &gt; prof.gif
+</pre>
+<p>Here is some example output:</p>
+<div class="figure align-center">
+<img alt="Profile of sparse labeling extension in sweep script" src="static/images/prof.png" style="width: 100%;" />
+<p class="caption">In this call graph, the python debugging symbols were not properly included; this is resolved by using the
+debugging executable.</p>
+</div>
+<p>The call graph is in standard form, where the first percentange is the time in that particular
+function alone, and where the second percentage is the time in all functions called by that function.
+See the <a class="reference external" href="http://google-perftools.googlecode.com/svn/trunk/doc/cpuprofile.html">description</a> for more details.</p>
+<p>And that's it. Happy profiling!</p>
+
+            
+            <section>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="http://miskatonic.ged.msu.edu/profiling-with-yep.html#disqus_thread">
+                Comments
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+                    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'camillescott';
+        var disqus_identifier = 'http://miskatonic.ged.msu.edu/profiling-with-yep.html';
+    var disqus_url = 'http://miskatonic.ged.msu.edu/profiling-with-yep.html';
+
+    (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2013-12-06T00:00:00-05:00">Dec 6, 2013</time>
+            <h4>Category</h4>
+            <a class="category-link" href="http://miskatonic.ged.msu.edu/categories.html#python-ref">python</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://miskatonic.ged.msu.edu/tags.html#c-ref">c++
+                    <span>1</span>
+</a></li>
+                <li><a href="http://miskatonic.ged.msu.edu/tags.html#profiling-ref">profiling
+                    <span>1</span>
+</a></li>
+                <li><a href="http://miskatonic.ged.msu.edu/tags.html#programming-ref">programming
+                    <span>1</span>
+</a></li>
+                <li><a href="http://miskatonic.ged.msu.edu/tags.html#python-ref">python
+                    <span>2</span>
+</a></li>
+            </ul>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-subtitle"><span class="site-name">At the Mountains of Madness</span> - a blog on the perils and wonders of bioinformatics</li>
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+            <script type="text/javascript">
+var disqus_shortname = 'camillescott';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<script  language="javascript" type="text/javascript">
+function uncollapse() {
+    if (window.location.hash.match(/^#comment-\d+$/)) {
+        $('#disqus_thread').collapse('show');
+    }
+}
+</script>
+<script type="text/javascript" language="JavaScript">
+uncollapse();
+window.onhashchange=function(){
+    if (window.location.hash.match(/^#comment-\d+$/))
+        window.location.reload(true);
+}
+</script>
+<script>
+$('#disqus_thread').on('shown', function () {
+    var link = document.getElementsByClassName('accordion-toggle');
+    var old_innerHTML = link[0].innerHTML;
+    $(link[0]).fadeOut(500, function() {
+        $(this).text('Click here to hide comments').fadeIn(500);
+    });
+    $('#disqus_thread').on('hidden', function () {
+        $(link[0]).fadeOut(500, function() {
+            $(this).text(old_innerHTML).fadeIn(500);
+        });
+    })
+})
+</script>
+
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>
