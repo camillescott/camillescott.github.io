@@ -31,7 +31,7 @@ AUTHOR_SAVE_AS = ''
 DISQUS_SITENAME = 'camillescott'
 
 # Blogroll
-LINKS =  (('GED Lab', 'http://ged.msu.edu/'), ('Titus Brown', 'http://ivory.idyll.org/blog/'))
+LINKS =  (('DIB Lab', 'http://ivory.idyll.org/lab'), ('Titus Brown', 'http://ivory.idyll.org/blog/'))
 #DISPLAY_CATEGORIES_ON_MENU = True
 # Social widget
 SOCIAL = (()) #)(('You can', '#'),
@@ -45,15 +45,33 @@ DEFAULT_PAGINATION = 5
 LANDING_PAGE_ABOUT = {'title': 'The Woman out of Space', 'details':
 '''
 <p>
-You've come across, or for reasons unknown, deliberately visited, the site of Camille Scott. I'm a graduate student at Michigan State University, currently pursuing a PhD in Computer Science. I work under -- or stumble after -- <a href='http://ivory.idyll.org/blog'>Titus Brown</a>, in the <a href='http://ged.msu.edu'>Lab for Genomics, Evolution, and Development (GED)</a>.
+You've come across, or for reasons unknown, deliberately visited, the site of
+Camille Scott. I'm a graduate student at UC Davis pursuing a PhD in 
+Computer Science. I work under -- or stumble after -- 
+<a href='http://ivory.idyll.org/blog'>Titus Brown</a>, in the 
+<a href='http://ivory.idyll.org/lab'>Lab for Data Intensive Biology</a>.
+</p>
+
+<p>
+Our lab mostly works with next gen sequence analysis, with a focus on 
+metagenomic and transcriptomic assembly, de Bruijn graph algorithms, 
+<a href='https://github.com/ged-lab/khmer'>k-mer counting</a>, 
+<a href='https://khmer-protocols.readthedocs.org/'>protocol development</a>, 
+and teaching. I like graphs -- big graphs, small graphs, dense graphs, and 
+sparse graphs! -- and my recent work has focused on sparse de Bruijn graph 
+labeling. I also play with the lamprey transcriptome, help out with the 
+protocol development, help teach our 
+<a href='http://ged.msu.edu/angus/'>bioinformatics</a> 
+<a href='http://2013-caltech-workshop.readthedocs.org/en/latest/'>courses</a>, 
+and occasionally, study digital evolution with <a href='http://avida.devosoft.org/'>avida</a>.
 </p>
 <p>
-Our lab mostly works with next gen sequence analysis, with a focus on metagenomics and transcriptomics assembly, de Bruijn graph algorithms, <a href='https://github.com/ged-lab/khmer'>k-mer counting</a>, <a href='https://khmer-protocols.readthedocs.org/'>protocol development</a>, and teaching. I like graphs -- big graphs, small graphs, dense graphs, and sparse graphs! -- and my recent work has focused on sparse de Bruijn graph labeling. I also play with the lamprey transcriptome, help out with the protocol development, help teach our <a href='http://ged.msu.edu/angus/'>bioinformatics</a> <a href='http://2013-caltech-workshop.readthedocs.org/en/latest/'>courses</a>, and occasionally, study digital evolution with <a href='http://avida.devosoft.org/'>avida</a>.
+Out in the (gasp!) real world, I make music, watch too much Star Trek, rant 
+about gender identity and transfeminism, and play cat-mom. I also have a love of Lovecraft.
 </p>
 <p>
-Out in the (gasp!) real world, I make music, watch too much Star Trek, rant about gender identity and transfeminism, and play cat-mom. I also have a love of Lovecraft.
-</p>
-<p>
-I occasionally <a href='http://twitter.com/camille_codon'> tweet </a>, and I have a moderately active <a href='https://github.com/camillescott'>github</a> account. Feel free to <a href='mailto:camille.scott.w@gmail.com'>email</a> me!
+I occasionally <a href='http://twitter.com/camille_codon'> tweet </a>, and I 
+have a moderately active <a href='https://github.com/camillescott'>github</a> 
+account. Feel free to <a href='mailto:camille.scott.w@gmail.com'>email</a> me!
 </p>
 '''}
