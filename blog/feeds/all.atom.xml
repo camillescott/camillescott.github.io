@@ -1,51 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>At the Mountains of Madness</title><link href="http://camillescott.github.io/blog/" rel="alternate"></link><link href="http://camillescott.github.io/blog/feeds/all.atom.xml" rel="self"></link><id>http://camillescott.github.io/blog/</id><updated>2014-07-17T00:00:00-04:00</updated><entry><title>the interesting thing about trans women and science and Science</title><link href="http://camillescott.github.io/blog/interesting.html" rel="alternate"></link><updated>2014-07-17T00:00:00-04:00</updated><author><name>Camille Scott</name></author><id>tag:camillescott.github.io,2014-07-17:blog/interesting.html</id><summary type="html">&lt;p&gt;After a rather unsavory series of comments from one of the editors of Science
-Careers, and the twitter storm that followed, I've been motivated to write. First,
-the background. Science recently ran a &lt;a class="reference external" href="http://www.sciencemag.org/content/345/6193.toc#SpecialIssue"&gt;special issue&lt;/a&gt; on Strategies against HIV/AIDS. The cover of this issue depicts several transgender sex workers, from
-the neck down, in revealing clothing, along with a blurb about high risk groups. Cue Jim Austin and his
-twitter comments. Let's begin with one to set the tone:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;em&gt;Interesting to consider how those gazey males will feel when they find out.&amp;quot;&lt;/em&gt; -- Jim Austin, &amp;#64;SciCareerEditor&lt;/blockquote&gt;
-&lt;p&gt;Interesting is the operative word of the day. Given that this was in response to the pictured
-womens' trans status, perhaps Mr. Austin thinks it's &lt;em&gt;interesting&lt;/em&gt; how often trans women
-are raped, assaulted, and murdered because of such men &amp;quot;finding out.&amp;quot; Or
-perhaps it's more &lt;em&gt;interesting&lt;/em&gt; to observe the casual transphobia displayed by men in positions
-of privilege like himself. After all,&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;em&gt;You realize they are transgender? Does it matter? That at least colors things, no?&lt;/em&gt; -- Jim Austin, &amp;#64;SciCareerEditor&lt;/blockquote&gt;
-&lt;p&gt;Why yes, it does color things, and in very &lt;em&gt;interesting&lt;/em&gt; ways. There is a long and
-very colorful history of the relationship between trans people and scientists.
-We could consider that scientists
-who found trans women &lt;em&gt;interesting&lt;/em&gt; in the 70's and 80's helped set back trans rights by decades.
-We could consider that scientists who found trans women &lt;em&gt;interesting&lt;/em&gt; created a conception of
-trans women being shallow and manipulative by writing as such in their articles, because trans women
-were only okayed for treatment by those same scientists if they acted out those stereotypes.
-We could consider that scientists
-and lawyers who found trans women &lt;em&gt;interesting&lt;/em&gt; created a healthcare system that, for decades, made it
-almost impossible for trans women to get treatment. We could consider that
-scientists who find trans women &lt;em&gt;interesting&lt;/em&gt; have continually used us as lab rats to
-publish poorly-supported sexist conclusions on the differences between gendered brains,
-with no visible knowledge gain given back to the trans community.&lt;/p&gt;
-&lt;p&gt;Or for things our esteemed editor might consider less &lt;em&gt;interesting&lt;/em&gt;, we could consider that actions
-like the recent one only further the common conception that trans women of color
-are good for nothing but satisfying the sexual desires of men (but make sure we call it &amp;quot;raising
-awareness&amp;quot; so people can think this reinforcement is noble). We could consider that many
-trans women are denied careers in fields like, say, science, because of these
-stereotypes. Or we could consider that many trans women are denied careers outright because
-of these stereotypes.&lt;/p&gt;
-&lt;p&gt;And I haven't even talked about the cover yet! I'm not sure I need to; it's been discussed
-&lt;a class="reference external" href="http://scientopia.org/blogs/drugmonkey/2014/07/16/does-science-magazine-actually-sell-many-copies-at-the-newsstand/"&gt;elsewhere&lt;/a&gt; quite nicely.
-But I can talk about trans representation in science, and even in Science. How about instead
-of once again pointing out the public health concerns of trans sex workers, we have a special issue
-on the pressures that force so many trans women into sex work in the first place? Or on
-the false notions of LGBT people being the root cause of sexually transmitted diseases?
-Or, a special issue of articles written by only trans scientists?&lt;/p&gt;
-&lt;p&gt;We are not your lab rats. We are not your charitable tax writeoff. We are not your
-fetish objects. We &lt;em&gt;are&lt;/em&gt; scientists, we &lt;em&gt;are&lt;/em&gt; mothers, we &lt;em&gt;are&lt;/em&gt; students, teachers,
-lawyers, doctors, sex workers, dock workers, factory workers, social workers,
-musicians, artists. We are people. And we are more than &amp;quot;interesting.&amp;quot;&lt;/p&gt;
-&lt;p&gt;-Camille&lt;/p&gt;
-</summary><category term="trans"></category><category term="science"></category><category term="sexism"></category><category term="trigger-warning"></category></entry><entry><title>Practical Python: Context Managers and IPython Notebook</title><link href="http://camillescott.github.io/blog/context-managers-for-ipython.html" rel="alternate"></link><updated>2014-05-05T00:00:00-04:00</updated><author><name>Camille Scott</name></author><id>tag:camillescott.github.io,2014-05-05:blog/context-managers-for-ipython.html</id><summary type="html">&lt;p&gt;Recently, I've been making a lot of progress on the lamprey transcriptome project,
+<feed xmlns="http://www.w3.org/2005/Atom"><title>At the Mountains of Madness</title><link href="http://camillescott.github.io/blog/" rel="alternate"></link><link href="http://camillescott.github.io/blog/feeds/all.atom.xml" rel="self"></link><id>http://camillescott.github.io/blog/</id><updated>2014-05-05T00:00:00-04:00</updated><entry><title>Practical Python: Context Managers and IPython Notebook</title><link href="http://camillescott.github.io/blog/context-managers-for-ipython.html" rel="alternate"></link><updated>2014-05-05T00:00:00-04:00</updated><author><name>Camille Scott</name></author><id>tag:camillescott.github.io,2014-05-05:blog/context-managers-for-ipython.html</id><summary type="html">&lt;p&gt;Recently, I've been making a lot of progress on the lamprey transcriptome project,
 and that has involved a lot of IPython notebook. While I'll talk about lamprey in
 a later post, I first want to talk about a nice technical tidbit I came up with
 while trying to manage a large IPython notebook with lots of figures. This involved
