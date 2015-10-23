@@ -68,7 +68,7 @@ and occasionally, study digital evolution with <a href='http://avida.devosoft.or
 </p>
 <p>
 Out in the (gasp!) real world, I make music, watch too much Star Trek, rant 
-about gender identity and transfeminism, and play cat-mom. I also have a love of Lovecraft.
+about my own flavor of feminism, and play cat-mom. I also have a love of Lovecraft.
 </p>
 <p>
 I occasionally <a href='http://twitter.com/camille_codon'> tweet </a>, and I 
