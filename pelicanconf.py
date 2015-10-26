@@ -7,7 +7,7 @@ SITENAME = u'At the Mountains of Madness'
 SITESUBTITLE =u'a blog on the perils and wonders of bioinformatics'
 SITEURL = 'http://www.camillescott.org'
 
-OUTPUT_PATH = u'blog/'
+OUTPUT_PATH = u'./'
 
 TIMEZONE = 'US/Eastern'
 
