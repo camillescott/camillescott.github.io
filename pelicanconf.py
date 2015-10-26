@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 AUTHOR = u'Camille Scott'
 SITENAME = u'At the Mountains of Madness'
 SITESUBTITLE =u'a blog on the perils and wonders of bioinformatics'
-SITEURL = 'http://camillescott.github.io/blog'
+SITEURL = 'http://www.camillescott.org'
 
 OUTPUT_PATH = u'blog/'
 
