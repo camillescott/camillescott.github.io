@@ -44,7 +44,7 @@ which would allow me to set up configurations ahead of time (likely via docker f
 and short-circuit the usual cross-platform, python distribution, and software
 installation issues.
 
-Overall, I really enjoyed the experience, as this was the first workshop I've run where
+I really enjoyed the experience, as this was the first workshop I've run where
 I created all the materials myself. I'm looking forward to doing more in the future.
 
 --camille
