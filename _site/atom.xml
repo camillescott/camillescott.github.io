@@ -4,13 +4,68 @@
  <title>Camille Scott</title>
  <link href="http://www.camillescott.org/atom.xml" rel="self"/>
  <link href="http://www.camillescott.org/"/>
- <updated>2016-01-20T22:27:15-08:00</updated>
+ <updated>2016-01-21T14:30:43-08:00</updated>
  <id>http://www.camillescott.org</id>
  <author>
    <name>Camille Scott</name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>pydoit half-day workshop debrief</title>
+   <link href="http://www.camillescott.org/2016/01/20/pydoit-workshop/"/>
+   <updated>2016-01-20T00:00:00-08:00</updated>
+   <id>http://www.camillescott.org/2016/01/20/pydoit-workshop</id>
+   <content type="html">&lt;h3&gt;About&lt;/h3&gt;
+
+&lt;p&gt;Earlier today I taught a half-day workshop introducing students to 
+&lt;a href=&quot;http://pydoit.org/&quot;&gt;doit&lt;/a&gt; for automating their workflows and building applications.
+This was an intermediate-level python workshop, in that it expected students to have
+operational python knowledge. The &lt;a href=&quot;http://www.camillescott.org/pydoit-intermediate/&quot;&gt;materials&lt;/a&gt;
+are freely available, and the workshop was live-streamed on YouTube, where it is
+&lt;a href=&quot;https://www.youtube.com/watch?v=EfD9bWmL-1M&quot;&gt;still available&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This workshop was part of a series being put on by our lab the next few quarters. A
+longer list of the workshops is at the &lt;a href=&quot;http://dib-training.readthedocs.org/en/pub/&quot;&gt;dib training site&lt;/a&gt;, and Titus has &lt;a href=&quot;http://ivory.idyll.org/blog/2015-training-for-q12-2016.html&quot;&gt;written&lt;/a&gt; on them &lt;a href=&quot;http://ivory.idyll.org/blog/2015-3hr-remote-workshops.html&quot;&gt;before&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Outcome&lt;/h3&gt;
+
+&lt;p&gt;Overall, I was happy with the results. Between the on-site participants and live-stream
+viewers, our attendance was okay (about ten people total), and all students communicated
+that they enjoyed the workshop and found it informative. Most of my materials (which I
+mostly wrote from scratch) seemed to parse well, with the exception of a few minor bugs
+which I caught during the lesson and was able to fix. As per usual, our training
+coordinator &lt;a href=&quot;https://twitter.com/jessicamizzi&quot;&gt;Jessica&lt;/a&gt; did a great job handling the
+logistics, and we were able to use of the brand new Data Science Initiative space in
+the Shields Library on the UC Davis campus.&lt;/p&gt;
+
+&lt;h3&gt;Thoughts for the Future&lt;/h3&gt;
+
+&lt;p&gt;We did have a number of no-shows, which was disappointing. My intuition is that this
+was caused by a mixture of it being the beginning of the quarter here, with many
+students, postdocs, staff, and faculty just returning, and the more advanced nature
+of the material, which tends to scare folks away. It might be another piece of data
+to support the idea of charging five bucks or so for tickets to require a small amount
+of activation energy and thus filter out likely no-shows, but we&amp;#39;ve had good luck so
+far with attendance, and it&amp;#39;d be best to make such a decision after we run a few more
+similar workshops (perhaps it would only need to be done for the intermediate or 
+advanced ones, for example).&lt;/p&gt;
+
+&lt;p&gt;We also had several students with installation issues, a recurring problem for these
+sorts of events. I&amp;#39;m leaning toward trying out browser-based approaches in the future,
+which would allow me to set up configurations ahead of time (likely via docker files)
+and short-circuit the usual cross-platform, python distribution, and software
+installation issues.&lt;/p&gt;
+
+&lt;p&gt;I really enjoyed the experience, as this was the first workshop I&amp;#39;ve run where
+I created all the materials myself. I&amp;#39;m looking forward to doing more in the future.&lt;/p&gt;
+
+&lt;p&gt;--camille&lt;/p&gt;
+
+&lt;p&gt;ps. this has been my first post in a long time, and I&amp;#39;m hoping to keep them flowing.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Context Managers and IPython Notebook</title>

@@ -22,6 +22,9 @@ time-gobbling vortex Eve Online.
 Out in the real world I emulate a normal person by playing with my cat, making music, and 
 enjoying Star Trek.
 
+For the curious, the site name comes from my being a bioinformatician and liking 
+The Who.
+
 ---
 
 This site was made with [hyde](https://github.com/poole/hyde).
