@@ -222,7 +222,7 @@ here; it takes some basic parameters to pass to <code>plt.subplots</code>, as we
 as some parameters for whether we want to show the plot and whether we
 want to save the result to file(s). The <code>__enter__</code> method returns the
 generated <code>figure</code> and <code>axes</code> objects. Finally, <code>__exit__</code> saves the
-figure to the filename with the given extensions (matplotlib uses the
+figure to the file name with the given extensions (matplotlib uses the
 extension to infer the file format), and shows the plot if necessary. It
 then calls <code>plt.close()</code> on the figure, deletes the <code>axes</code> objects from
 the figure, and calls <code>del</code> on both instances just to be sure. The three
@@ -335,7 +335,7 @@ construct callgraphs:</p>
 <p>In this call graph, the python debugging symbols were not properly
 included; this is resolved by using the debugging executable.</p>
 
-<p>The call graph is in standard form, where the first percentange is the
+<p>The call graph is in standard form, where the first percentage is the
 time in that particular function alone, and where the second percentage
 is the time in all functions called by that function. See the
 <a href="http://google-perftools.googlecode.com/svn/trunk/doc/cpuprofile.html">description</a>
