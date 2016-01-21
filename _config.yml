@@ -1,0 +1,34 @@
+# Dependencies
+markdown:         redcarpet
+highlighter:      pygments
+
+# Permalinks
+permalink:        pretty
+#relative_permalinks: true
+
+# Setup
+title:            'Camille Scott'
+tagline:          ''
+description:      'Bioinformatics PhD munging @ UC Davis.'
+url:              http://www.camillescott.org
+baseurl:          /
+
+author:
+  name:           'Camille Scott'
+  url:            https://twitter.com/camille_codon
+
+dammit:
+    url:          http://www.camillescott.org/dammit
+
+paginate:         5
+
+# Custom vars
+version:          2.1.0
+
+github:
+  repo:           https://github.com/camillescott/camillescott.github.io
+
+
+gems:
+    - jekyll-gist
+    - jekyll-paginate

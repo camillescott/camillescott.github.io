@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Context Managers and IPython Notebook &middot; Camille Scott
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class="theme-lamprey">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Camille Scott
+        </a>
+      </h1>
+      <p class="lead"><b>Bioinformatics PhD munging @ UC Davis.</b></p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">about</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/posts/">posts</a>
+          
+        
+      
+
+      <a class="sidebar-nav-item" href="http://www.camillescott.org/dammit">dammit annotator</a>
+      <a class="sidebar-nav-item" Href="https://twitter.com/camille_codon">@camille_codon</a>
+      <a class="sidebar-nav-item" href="https://github.com/camillescott/camillescott.github.io">site source</a>
+
+      
+    </nav>
+
+    <p>&copy; 2016. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Context Managers and IPython Notebook</h1>
+  <span class="post-date">05 May 2014</span>
+  Recently, I've been making a lot of progress on the lamprey
+transcriptome project, and that has involved a lot of IPython notebook.
+While I'll talk about lamprey in a later post, I first want to talk
+about a nice technical tidbit I came up with while trying to manage a
+large IPython notebook with lots of figures. This involved learning some
+more about the internals of matplotlib, as well as the usefulness of the
+with statement in python.
+
+So first, some background!
+[matplotlib](http://matplotlib.org/index.html) is the go-to plotting
+package for python. It has many weaknesses, and a whole series of posts
+could be (and has been) written about why we should use something else,
+but for now, its reach is long and it is widely used in the scientific
+community. It's particularly useful in concert with IPython notebook,
+where figures can be embedded into cells inline. However, an important
+feature(?) of matplotlib is that it's built around a state machine; when
+it comes to deciding what figure (and other components) are currently
+being worked with, matplotlib keeps track of the current context
+globally. That allows you to just call `plot()` at any given time and
+have your figures be pushed more or less where you'd like. It *also*
+means that you need to keep track of the current context, lest you end
+up drawing a lot of figures onto the same plot and producing a terrible
+abomination from beyond space and time itself.
+
+IPython has a number of ways of dealing with this. While in its inline
+mode, the default behavior is to simply create a new plotting context at
+the beginning of each cell, and close it at the cell's completion. This
+is convenient because it means the user doesn't have to open and close
+figures manually, saving a lot of coding time and boilerplate. It
+becomes a burden, however, when you have a large notebook, with lots of
+figures, some of which you don't want to be automatically displayed.
+While we can turn off the automatic opening and closing of figures with
+
+<figure class="highlight"><pre><code class="language-py" data-lang="py"><span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">close_figures</span> <span class="o">=</span> <span class="bp">False</span></code></pre></figure>
+
+we're now stuck with having to manage our own figure context. Suddenly,
+our notebooks aren't nearly as clean and beautiful as they once were,
+being littered with ugly declarations of new figures and axes, calls to
+`gcf()` and `plt.show()`, and other such not-pretty things. I like
+pretty things, so I sought out a solution. As it tends to do, python
+delivered.
+
+Enter context managers!
+
+Some time ago, many's a programmer was running into a similar problem
+with opening and closing files (well, and a lot of other use cases). To
+do things properly, we needed to do exception handling to properly and
+cleanly call `close()` on our file pointers when something went wrong.
+To handle such instances, python introduced [context managers and the
+with
+statement](https://docs.python.org/2/reference/datamodel.html#context-managers).
+From the docs:
+
+> A context manager is an object that defines the runtime context to be
+> established when executing a with statement. The context manager
+> handles the entry into, and the exit from, the desired runtime context
+> for the execution of the block of code.
+
+Though this completely washes out the \~awesomeness\~ of context
+managers, it *does* sound about like what we want! In simple terms,
+context managers are just objects that implement the `__enter__` and
+`__exit__` methods. When you use the `with` statement on one of them,
+`__enter__` is called, where we put our setup code ; if it returns
+something, it takes the name given it by `as`. `__exit__` is called
+after the `with` block is left, and contains the teardown code. For our
+purposes, we want to take care of matplotlib context. Without further
+ado, let's look at an example that does what we want:
+
+<figure class="highlight"><pre><code class="language-py" data-lang="py"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="k">class</span> <span class="nc">FigManager</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fn</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">exts</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;svg&#39;</span><span class="p">,</span> <span class="s">&#39;pdf&#39;</span><span class="p">,</span> <span class="s">&#39;png&#39;</span><span class="p">,</span> <span class="s">&#39;eps&#39;</span><span class="p">],</span> 
+        <span class="n">show</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+        <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">12</span><span class="p">),</span> <span class="n">tight_layout</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">fig_kwds</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">():</span>
+            <span class="k">print</span> <span class="s">&#39;leaving context of&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">())</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="n">nrows</span><span class="p">,</span> 
+                     <span class="n">ncols</span><span class="o">=</span><span class="n">ncols</span><span class="p">,</span> 
+                     <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">,</span>
+                     <span class="n">tight_layout</span><span class="o">=</span><span class="n">tight_layout</span><span class="p">,</span> 
+                     <span class="o">**</span><span class="n">fig_kwds</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">fn</span> <span class="o">=</span> <span class="n">fn</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">exts</span> <span class="o">=</span> <span class="n">exts</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="n">show</span>
+
+    <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">fig</span> <span class="o">==</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax</span>
+
+<span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_t</span><span class="p">,</span> <span class="n">exc_v</span><span class="p">,</span> <span class="n">trace_b</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="n">exc_t</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&#39;ERROR&#39;</span><span class="p">,</span> <span class="n">exc_t</span><span class="p">,</span> <span class="n">exc_v</span><span class="p">,</span> <span class="n">trace_b</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fn</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&#39;saving figure&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">ext</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">exts</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&#39;{}.{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fn</span><span class="p">,</span> <span class="n">ext</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">show</span><span class="p">:</span>
+    <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">fig</span> <span class="o">==</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span>
+    <span class="k">print</span> <span class="s">&#39;showing figure&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="p">)</span>
+
+    <span class="k">print</span> <span class="s">&#39;closing figure&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">delaxes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="p">)</span>
+    <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax</span>
+    <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">fig</span>
+    <span class="k">print</span> <span class="s">&#39;returning context to&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">())</span></code></pre></figure>
+
+Let's break this down. The `__init__` actually does most of our setup
+here; it takes some basic parameters to pass to `plt.subplots`, as well
+as some parameters for whether we want to show the plot and whether we
+want to save the result to file(s). The `__enter__` method returns the
+generated `figure` and `axes` objects. Finally, `__exit__` saves the
+figure to the filename with the given extensions (matplotlib uses the
+extension to infer the file format), and shows the plot if necessary. It
+then calls `plt.close()` on the figure, deletes the `axes` objects from
+the figure, and calls `del` on both instances just to be sure. The three
+expected parameters to `__exit__` are for exception handling, which is
+discussed in greater detail in the docs.
+
+Here's an example of how I used it in practice:
+
+<figure class="highlight"><pre><code class="language-py" data-lang="py"><span class="k">with</span> <span class="n">FigManager</span><span class="p">(</span><span class="s">&#39;genes_per_sample&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">tall_size</span><span class="p">)</span> <span class="k">as</span> <span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
+
+    <span class="n">genes_support_df</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s">&#39;barh&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">labels_df</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&#39;Represented Genes per Sample&#39;</span><span class="p">)</span>
+<span class="n">FileLink</span><span class="p">(</span><span class="s">&#39;genes_per_sample.svg&#39;</span><span class="p">)</span></code></pre></figure>
+
+That's taken directly out of the lamprey
+[notebook](http://nbviewer.ipython.org/github/camillescott/2013-lamprey/blob/lamp3/pub/tale_of_two_transcriptomes_compute.ipynb)
+where I first implemented this. I usually put a filelink in there, so
+that the resulting image can easily be viewed in its own tab for closer
+inspection.
+
+The point is, all the normal boilerplate for handling figures is done in
+one line and the code is much more clear and pretty! And of course, most
+importantly, the original goal of not automatically displaying figures
+is also taken care of.
+
+I consider this yak shaved.
+
+--camille
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2014/05/05/context-management/">
+            Context Managers and IPython Notebook
+            <small>05 May 2014</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2013/12/06/yep.md/">
+            Profiling C++ Extensions with Yep
+            <small>06 Dec 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2013/12/06/yep/">
+            Profiling C++ Extensions with Yep
+            <small>06 Dec 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>
