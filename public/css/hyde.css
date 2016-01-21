@@ -182,7 +182,7 @@ a.sidebar-nav-item:focus {
 .theme-lamprey .sidebar {
   background-color: rgb(251, 252, 253);
   background-image: url("../lampreys_illustration.jpg");
-  background-position: 5% -30%;
+  background-position: 5% 150%;
   background-repeat: no-repeat;
   border-style: solid;
   border-width: 0px 10px 0px 0px;
