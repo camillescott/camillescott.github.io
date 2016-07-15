@@ -193,10 +193,15 @@ figure figcaption {
 /* Lamprey */
 .theme-lamprey .sidebar {
   background-color: rgb(251, 252, 253);
-  background-image: url("../lampreys_illustration.jpg");
+/*  background-image: url("../trees.jpg");*/
+      background: -webkit-linear-gradient(left top, #F0F8FF, rgb(251, 252, 253)); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(bottom right, #F0F8FF, rgb(251, 252, 253)); /* For Opera 11.1 to 12.0 */
+          background: -moz-linear-gradient(bottom right, #F0F8FF, rgb(251, 252, 253)); /* For Firefox 3.6 to 15 */
+            background: linear-gradient(to bottom right, #F0F8FF, rgb(251, 252, 253)); /* Standard syntax */
   background-position: 5% 150%;
   background-repeat: no-repeat;
   border-style: solid;
+  border-color: #e6f3ff;
   border-width: 0px 10px 0px 0px;
 }
 
