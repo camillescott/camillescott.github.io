@@ -32,23 +32,6 @@ github:
 gems:
     - jekyll-gist
     - jekyll-paginate
-    - jekyll_figure
-    - jekyll/scholar
-
-figures:
-    dir: /public/figures
-    analytics: true
-    enumerate: true
-
-scholar:
-    #style: apa
-    locale: en
-    source: /public/bib
-    bibliography: explotiv.bib
-    #bibliography_template: "{{reference}}"
-    use_raw_bibtex_entry: false
-    #style: https://www.zotero.org/styles/din-1505-2-alphanumeric
-    style: https://www.zotero.org/styles/plos-one
 
 defaults:
   -
