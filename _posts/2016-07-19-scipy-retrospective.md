@@ -3,15 +3,15 @@ layout: post
 title: SciPy 2016 Retrospective
 ---
 
-This week, I attended my first SciPy conference in Austin. I've been to the past three PyCons in Montreal and Portland,
+Last week I attended my first SciPy conference in Austin. I've been to the past three PyCons in Montreal and Portland,
 and aside from my excitement to learn more about the great scientific Python community, I was curious to see how it
 compared to the general conference I've come to know and love.
 
 SciPy, by my accounting, is a curious microcosm of the academic open source community as a whole. It is filled with great
 people doing amazing work, releasing incredible tools, and pushing the frontiers of features and accessibility in scientific
 software. It is also is marked by some of the same problems as the larger community: a stark lack of gender (and other) diversity and a
-surprisingly lack of consciousness of the problem. I'll start by going over some of the cool projects I learned about,
-and then move in to some thoughts on the gender issue.
+surprising (or not) lack of consciousness of the problem. I'll start by going over some of the cool projects I learned about,
+and then move on to some thoughts on the gender issue.
 
 ## Cool Stuff
 
