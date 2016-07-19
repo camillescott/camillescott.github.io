@@ -31,7 +31,7 @@ build a [pydoit](pydoit.org) module with her extractor, and she's been responsiv
 It would be pretty easy to build modules for any number of build systems -- it only requires about 50 lines of code. I'm definitely looking forward
 to using nbflow in future projects.
 
-## JupyterLab
+### JupyterLab
 
 The Jupyter folks made a big splash with [JupyterLab](http://jupyter.org/jupyterlab/_, which is currently in alpha.. 
 They've built an awesome extension API
@@ -42,13 +42,13 @@ which I think is a Good Thing; intuitive and simple interfaces are important to 
 helpful in the classroom. They're shooting to have a 1.0 release out by next year's SciPy, emphasizing that they'll require a 1.0 to be squeaky clean.
 I'll be anxiously awaiting its arrival!
 
-## Binder
+### Binder
 
 [Binder](http://mybinder.org/) might be oldish news to many people at this point, but it was great to see it represented. For those not in the know,
 it allows you to spin up Jupyter notebooks on-demand from a github repo, specifying dependencies with Docker, PyPI, and Conda. This is a great boon
 for reproducibility, executable papers, classrooms, and the like. 
 
-## Altair
+### Altair
 
 The first keynote of the conference was yet another plotting library, [Altair](https://github.com/ellisonbg/altair). I must admit that I was somewhat skeptical going in: the lament
 and motivation behind Altair was how users have too many plotting libraries to choose from and too much complexity, and solving this problem
