@@ -33,7 +33,7 @@ to using nbflow in future projects.
 
 ### JupyterLab
 
-The Jupyter folks made a big splash with [JupyterLab](http://jupyter.org/jupyterlab/_, which is currently in alpha.. 
+The Jupyter folks made a big splash with [JupyterLab](http://jupyter.org/jupyterlab/), which is currently in alpha.. 
 They've built an awesome extension API
 that makes adding new functionality dead simple, and it appears they've removed many of the warts from the current Jupyter client. State is seamlessly
 and quickly shipped around the system, making all the components fully live and interactive. They're calling it an IDE -- an *Interactive* Development
