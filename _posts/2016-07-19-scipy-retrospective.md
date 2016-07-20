@@ -92,7 +92,7 @@ and 4 out of 37 tutorial presenters were women, and the stats are much worse for
 by some presenters noting the great diversity of the conference (maybe they were talking about topics?), and in one case, by the words of an otherwise well meaning man that I had a conversation
 with: when the 9% speaker rate for women was pointed out to him, he pondered the number and said that it "sounded pretty good." It isn't! He further pressed
 as to whether we would be satisfied once it hit 50%; [somehow the "when is enough enough?" question always comes up](https://youtu.be/SmkFX0myYU4?t=11). What's clear is
-that "enough" is a lot more than 9%. This state of things isn't new -- [several](https://wrightaprilm.github.io/posts/lonely.html) folks have [written](
+that "enough" is a lot more than 9%. This state of things isn't new -- [several](https://wrightaprilm.github.io/posts/lonely.html) folks have [written](http://andy.terrel.us/blog/2014/07/17/) about it in regards to previous years.
 
 There are some steps that can be taken here -- organizers could look toward the PSF's successful efforts to improve the gender situation at PyCon, where funding was sought
 for a paid chair (as opposed to SciPy's unpaid position). The Code of Conduct should be clearly highlighted and emphasized at the beginning of the conference.
