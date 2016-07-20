@@ -7,10 +7,10 @@ Last week I attended my first SciPy conference in Austin. I've been to the past 
 and aside from my excitement to learn more about the great scientific Python community, I was curious to see how it
 compared to the general conference I've come to know and love.
 
-SciPy, by my accounting, is a curious microcosm of the academic open source community as a whole. It is filled with great
+SciPy, by my account, is a curious microcosm of the academic open source community as a whole. It is filled with great
 people doing amazing work, releasing incredible tools, and pushing the frontiers of features and accessibility in scientific
-software. It is also is marked by some of the same problems as the larger community: a stark lack of gender (and other) diversity and a
-surprising (or not) lack of consciousness of the problem. I'll start by going over some of the cool projects I learned about,
+software. It is also marked by some of the same problems as the larger community: a stark lack of gender (and other) diversity and a
+surprising (or not) lack of consciousness of the problem. I'll start by going over some of the cool projects I learned about
 and then move on to some thoughts on the gender issue.
 
 ## Cool Stuff
@@ -33,7 +33,7 @@ to using nbflow in future projects.
 
 ### JupyterLab
 
-The Jupyter folks made a big splash with [JupyterLab](http://jupyter.org/jupyterlab/), which is currently in alpha.. 
+The Jupyter folks made a big splash with [JupyterLab](http://jupyter.org/jupyterlab/), which is currently in alpha. 
 They've built an awesome extension API
 that makes adding new functionality dead simple, and it appears they've removed many of the warts from the current Jupyter client. State is seamlessly
 and quickly shipped around the system, making all the components fully live and interactive. They're calling it an IDE -- an *Interactive* Development
@@ -50,11 +50,11 @@ for reproducibility, executable papers, classrooms, and the like.
 
 ### Altair
 
-The first keynote of the conference was yet another plotting library, [Altair](https://github.com/ellisonbg/altair). I must admit that I was somewhat skeptical going in: the lament
+The first keynote of the conference was yet another plotting library, [Altair](https://github.com/ellisonbg/altair). I must admit that I was somewhat skeptical going in. The lament
 and motivation behind Altair was how users have too many plotting libraries to choose from and too much complexity, and solving this problem
 by introducing a new library invokes the obligatory xkcd. However, in the end, I think the move here is needed.
 
-Altair a python interface to [vega-lite](https://github.com/vega/vega-lite): the API is a straight-forward plotting interface which spits out a vega-lite
+Altair a python interface to [vega-lite](https://github.com/vega/vega-lite); the API is a straight-forward plotting interface which spits out a vega-lite
 spec to be rendered by whatever vega-compatible graphics frontend the user might like. This is a massive improvement over
 the traditional way of using vega-lite, which is "simply write raw JSON(!)" It looks to have sane defaults and produce nice looking
 plots with the default frontend. More important, however, is the paradigm shift they are trying to initiate: that plotting should be
@@ -89,8 +89,8 @@ regardless.
 
 The stats are [equally bad](https://gist.github.com/jiffyclub/c1c75641b50a9370bb144f5623e177c4): 12 out of 124 speakers, 8 out of 52 poster presenters,
 and 4 out of 37 tutorial presenters were women, and the stats are much worse for people of color. The lack of consciousness of the problem was highlighted
-by some presenters noting the great diversity of the conference (maybe they were talking about topics?), and in one case, by the words of an otherwise well meaning man that I had a conversation
-with: when the 9% speaker rate for women was pointed out to him, he pondered the number and said that it "sounded pretty good." It isn't! He further pressed
+by some presenters noting the great diversity of the conference (maybe they were talking about topics?), and in one case, by the words of an otherwise well-meaning man whom I had a conversation
+with; when the 9% speaker rate for women was pointed out to him, he pondered the number and said that it "sounded pretty good." It isn't! He further pressed
 as to whether we would be satisfied once it hit 50%; [somehow the "when is enough enough?" question always comes up](https://youtu.be/SmkFX0myYU4?t=11). What's clear is
 that "enough" is a lot more than 9%. This state of things isn't new -- [several](https://wrightaprilm.github.io/posts/lonely.html) folks have [written](http://andy.terrel.us/blog/2014/07/17/) about it in regards to previous years.
 
