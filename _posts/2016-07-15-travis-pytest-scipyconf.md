@@ -117,7 +117,7 @@ root directory with a line telling where the tests are:
 
 ### organizing test data
 
-Other than documentation gripdes, py.test is a solid library. Particularly nifty are fixtures, which make it easy to abstract away more boilerplate. For example,
+Other than documentation gripes, py.test is a solid library. Particularly nifty are fixtures, which make it easy to abstract away more boilerplate. For example,
 in the past I've use the structure of our lab's [khmer project](https://github.com/dib-lab/khmer) for grabbing test data and copying it into temp directories,
 but it involves a fair amount of code and bookkeeping. With a fixture, I can easily access test data in any test, while cleaning up the garbage:
 

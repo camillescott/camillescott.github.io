@@ -32,7 +32,7 @@
  */
 
 html {
-  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+  font-family: Palatino, serif;
 }
 @media (min-width: 48em) {
   html {
@@ -79,7 +79,7 @@ html {
 .sidebar-about h1 {
   color: #fff;
   margin-top: 0;
-  font-family: "Abril Fatface", serif;
+  font-family: "Palatino", serif;
   font-size: 3.25rem;
 }
 
@@ -97,6 +97,10 @@ a.sidebar-nav-item:focus {
 }
 .sidebar-nav-item.active {
   font-weight: bold;
+}
+
+.lead {
+  font-style: italic;
 }
 
 /* Sticky sidebar
@@ -128,7 +132,7 @@ a.sidebar-nav-item:focus {
 
 @media (min-width: 48em) {
   .content {
-    max-width: 38rem;
+    max-width: 45rem;
     margin-left: 20rem;
     margin-right: 2rem;
   }
@@ -176,9 +180,6 @@ figure figcaption {
     max-width: 80%;
 }
 
-.bibliography ol, li {
-    list-style-type: none;
-}
 
 /*
  * Themes
@@ -192,17 +193,14 @@ figure figcaption {
 
 /* Lamprey */
 .theme-lamprey .sidebar {
-  background-color: rgb(251, 252, 253);
+  background-color: #8bc34a;
 /*  background-image: url("../trees.jpg");*/
-      background: -webkit-linear-gradient(left top, #F0F8FF, rgb(251, 252, 253)); /* For Safari 5.1 to 6.0 */
-        background: -o-linear-gradient(bottom right, #F0F8FF, rgb(251, 252, 253)); /* For Opera 11.1 to 12.0 */
-          background: -moz-linear-gradient(bottom right, #F0F8FF, rgb(251, 252, 253)); /* For Firefox 3.6 to 15 */
-            background: linear-gradient(to bottom right, #F0F8FF, rgb(251, 252, 253)); /* Standard syntax */
   background-position: 5% 150%;
   background-repeat: no-repeat;
   border-style: solid;
-  border-color: #e6f3ff;
-  border-width: 0px 10px 0px 0px;
+  border-color: black;
+  border-width: 0px 5px 0px 0px;
+  font-weight: bold;
 }
 
 .theme-lamprey .sidebar a,
@@ -210,7 +208,6 @@ figure figcaption {
 .theme-lamprey .sidebar h1,
 .theme-lamprey .content a,
 .theme-lamprey .related-posts li a:hover {
-  text-shadow: 1px 1px #c1c1a4;
   /*color: #331900;*/
   color: #000000;
 }
@@ -286,3 +283,9 @@ figure figcaption {
 .theme-base-0f .related-posts li a:hover {
   color: #8f5536;
 }
+/*
+.bibliography ol, li {
+    list-style-type: none;
+}
+*/
+
