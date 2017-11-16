@@ -82,7 +82,7 @@ def linear_structure(request, graph, ksize, random_sequence):
     graph.consume(sequence)
 
     # Check for false positive neighbors in our graph:
-	# this linear path should have no "high degree nodes"
+    # this linear path should have no "high degree nodes"
     # Mark as an expected failure if any are found
     if hdn_counts(sequence, graph):
         request.applymarker(pytest.mark.xfail)
