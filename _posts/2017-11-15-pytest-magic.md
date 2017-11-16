@@ -123,7 +123,7 @@ def ksize(request):
 Slightly better! We test three values for $$K$$ instead of one. Unfortunately, it still doesn't quite cut it: for some tests
 we want more a more trivial dBG ( say with $$K=4$$), or we might not want or need to have three instances of every single test.
 We need individual tests to be able to set their own $$K$$, and importantly, it still needs to trickle down to all the
-fixtures the test depends on. I'd also like this to be somewhat clear and concise: turns out that what I've done here
+fixtures the test depends on. I'd also like this to be somewhat clear and concise: turns out that what I'm about to show you  
 can more or less be achieved with indirect parametrization, but I find that interface clunky (and not very well documented)
 , and besides, this taught me a bit more about pytest.
 
