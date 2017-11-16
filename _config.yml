@@ -11,7 +11,7 @@ title:            'Camille Scott'
 tagline:          'PhD munging @ UCD.'
 description:      'PhD munging @ UCD.'
 url:              http://www.camillescott.org
-baseurl:          /
+baseurl:          ''
 
 author:
   name:           'Camille Scott'
