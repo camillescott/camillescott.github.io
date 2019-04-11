@@ -206,10 +206,13 @@ figure figcaption {
 .theme-lamprey .sidebar a,
 .theme-lamprey .sidebar p,
 .theme-lamprey .sidebar h1,
-.theme-lamprey .content a,
 .theme-lamprey .related-posts li a:hover {
   /*color: #331900;*/
   color: #000000;
+}
+
+.theme-lamprey .content a {
+  color: ##bd7839;
 }
 
 /* Red */
