@@ -49,7 +49,7 @@ To start testing, I immediately began trying to run the associated tools on my o
 
 The documentation suggested running the code through `genreflex`, which would require an interface file `#include`ing my headers and explicitly declaring any template specializations I would need. `genreflex` runs `rootcling` with a bunch of preconfigured options, which ends up calling into `clang` and hence needs properly configured includes and library paths. It's likely it will fail at first, due to being unable to find `libclang.so` or some variant; this can be solved by a `sudo apt install clang-7 libclang-7-dev`, or whatever the equivalent for your distribution. You can then go on to run `genreflex` and then compile with your system compilers as [described in the docs](https://cppyy.readthedocs.io/en/latest/dictionaries.html).
 
-This is fine for mucking about on your own computer, but ultimately, with modern scientific software, it's desirable to get this working in a [conda](https://docs.conda.io/en/latest/) environment (and for my purposes, [bioconda](https://bioconda.github.io/)). This required a lot of trial and error, but ultimately, the necessary minimal invocation for the test of this post is:
+This is fine for mucking about on your own computer, but ultimately, with modern scientific software, it's desirable to get this working in a [conda](https://docs.conda.io/en/latest/) environment (and for my purposes, [bioconda](https://bioconda.github.io/)). This required a lot of trial and error, but ultimately, the necessary minimal invocation for the rest of this post is:
 
     conda create -n cppyy-example python=3 cxx-compiler c-compiler clangdev libcxx libstdcxx-ng libgcc-ng cmake
     conda activate cppyy-example 
