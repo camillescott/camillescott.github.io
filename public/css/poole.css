@@ -343,6 +343,17 @@ tbody tr:nth-child(odd) th {
   margin-top: 0;
 }
 
+.page-subtitle,
+.post-subtitle,
+.post-subtitle a {
+  color: #474747;
+}
+
+.page-subtitle,
+.page-title {
+  margin-top: 0;
+}
+
 /* Meta data line below post title */
 .post-date {
   display: block;
