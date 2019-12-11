@@ -4,7 +4,7 @@ title: dammit
 permalink: /dammit
 ---
 
-Looking for the dammit docs? They now live at the dib-lab: http://dib-lab.github.io/dammit/
+Looking for the dammit docs? They now live at the [dib-lab](http://dib-lab.github.io/dammit/).
 
 You can also cite it with its zenodo DOI!
 
