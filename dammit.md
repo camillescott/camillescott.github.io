@@ -1,6 +1,6 @@
 ---
 layout: page
-title: dammit
+title: dammit annotator
 permalink: /dammit
 ---
 
