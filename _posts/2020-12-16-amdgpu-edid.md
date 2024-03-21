@@ -294,15 +294,4 @@ And the X11 log, when loading up your monitor, should now have:
 
 Sweet, sweet victory.
 
-## My Thoughts
-
-Now, unlike many other linux guides, I'm not going to sit back and say "see, easy as pie!" Instead, my take away from this is:
-
-**what the actual fuck?**
-
-The vast seas of the internet are filled with experiences of people having this issue, often times failing to fix it; those who press on come across the initial guides I found, and maybe got things working a couple years back, or they fail there; or they buy some DVI to DisplayPort adapter kludge to sidestep the issue. If they're like me, they get stuck on the problem and chase it down the rabbit hole, unable to let go. But really though,
-
-![are you fucking kidding me?](https://media1.tenor.com/images/02ef2cfd9afbc6292f46f34c5aefcd3d/tenor.gif?itemid=14770448)
-
-"But Camille," one might say, precipitating from the aether to smugly serve the doctrine of the elders, "why don't you submit a patch to the kernel like a proper open-source netizen?" Okay, I know C, and I know where in the code the problem is, and I can probably follow the patterns in it to add in the appropriate arguments. But kernel development doesn't exactly have a low barrier of entry, and the kernel developer community isn't exactly renowned for its welcoming atmosphere, so I probably won't. I also burned a whole afternoon on something really quite silly, so I'm tired. There's likely a lesson here about online community building, but I'll leave that as an exercise to the reader.
 
