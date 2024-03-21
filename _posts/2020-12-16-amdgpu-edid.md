@@ -15,7 +15,7 @@ To save you some suspense, dear reader, I'll tell you now what the problem is: y
 
 Well then! --
 
-![that's easy](https://thumbs.gfycat.com/SeriousFloweryDipper-small.gif)
+![that's easy](/public/thats-easy.gif)
 
 -- you just have to switch your output to RGB mode, after which you can happily skip along to whatever grail you're implementing. Alas, It Is Not That Easy.
 
